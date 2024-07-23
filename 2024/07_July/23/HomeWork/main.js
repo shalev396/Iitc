@@ -1,3 +1,4 @@
+// all variables and with initials of the task due to the repeating variables names
 //Declare Variables (Variables stay for next task)
 console.log("Declare Variables:");
 let firstNameDV = "Shalev";
