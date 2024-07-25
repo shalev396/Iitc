@@ -101,3 +101,101 @@ function formatName(nameSCM) {
   else return "Hello, " + nameSCM + "!";
 }
 console.log(formatName(nameSCMT));
+//Nested If Statements:
+console.log("Nested If Statements:");
+let ageNIST = 75;
+let isMemberNIST = true;
+function checkDiscount(ageNIS, isMemberNIS) {
+  if (ageNIS < 18) {
+    if (isMemberNIS) return "You get a 20% discount.";
+    else return "You get a 10% discount.";
+  }
+  if (ageNIS > 65) {
+    if (isMemberNIS) return "You get a 30% discount.";
+    else return "You get a 20% discount.";
+  }
+  if (ageNIS > 18 && ageNIS < 65) {
+    if (isMemberNIS) return "You get a 10% discount.";
+    else return "No discount available.";
+  }
+}
+console.log(checkDiscount(ageNIST, isMemberNIST));
+//Login Validation:
+console.log("Login Validation:");
+let usernameLVT = "name";
+let passwordLVT = "pass";
+function validateLogin(usernameLV, passwordLV) {
+  let storedUsernameLV = "name";
+  let storedPasswordLV = "pass";
+  if (usernameLV === storedUsernameLV && passwordLV === storedPasswordLV)
+    return "Login successful.";
+  return "Invalid username or password.";
+}
+console.log(validateLogin(usernameLVT, passwordLVT));
+//Substring Extraction:
+console.log("Substring Extraction:");
+let firstNameSET = "shalev";
+let LastNameSET = "ben moshe";
+function extractInitials(firstNameSE, LastNameSE) {
+  return (
+    firstNameSE.charAt(0).toUpperCase() +
+    "." +
+    LastNameSE.charAt(0).toUpperCase() +
+    "."
+  );
+}
+console.log(extractInitials(firstNameSET, LastNameSET));
+//String Replacement:
+console.log("String Replacement:");
+let emailSRT = "shalev396@gmail.com";
+function maskEmail(emailSR) {
+  let emailPartSR = emailSR.slice(0, emailSR.indexOf("@"));
+  emailSR = emailSR.replace(emailPartSR, "******");
+  return emailSR;
+}
+console.log(maskEmail(emailSRT));
+//Nested If-Else:
+console.log("Nested If-Else:");
+let scoreNIET = 81;
+function gradeCalculator(scoreNIE) {
+  if (scoreNIE >= 90) return "A";
+  else if (scoreNIE >= 80) return "B";
+  else if (scoreNIE >= 70) return "C";
+  else if (scoreNIE >= 60) return "D";
+  else return "f";
+}
+console.log(gradeCalculator(scoreNIET));
+//Complex Boolean Conditions:
+console.log("Complex Boolean Conditions:");
+let ageCBCT = "21";
+let isCitizenCBCT = true;
+function canVote(ageCBC, isCitizenCBC) {
+  if ((ageCBC >= 18, isCitizenCBC)) return "You are eligible to vote.";
+  return "You are not eligible to vote.";
+}
+console.log(canVote(ageCBCT, isCitizenCBCT));
+//String and Number Conversion:
+console.log("String and Number Conversion:");
+let nameSNCT = "Shalev";
+let ageSNCT = "21";
+function convertToUpperCaseAndAddAge(nameSNC, ageSNC) {
+  nameSNC = nameSNC.toUpperCase();
+  return nameSNC + ageSNC.toString();
+}
+console.log(convertToUpperCaseAndAddAge(nameSNCT, ageSNCT));
+//Capitalize First Letter:
+console.log("Capitalize First Letter:");
+let wordCFLT = "shalev";
+function capitalize(wordCFL) {
+  return wordCFL.replace(wordCFL[0], wordCFL[0].toUpperCase());
+}
+console.log(capitalize(wordCFLT));
+//Check Substring:
+console.log("Check Substring:");
+let mainStringCST = "abcdefghijklmnopqrstuvwxyz";
+let subStringCST = "opq";
+function containsSubstring(mainStringCS, subStringCS) {
+  if (mainStringCS.includes(subStringCS)) return true;
+  return false;
+}
+console.log(containsSubstring(mainStringCST, subStringCST));
