@@ -11,7 +11,12 @@
 //10. true
 //11. false
 //12. true
-//13.
-//14.
-//// 15. yes, he dose not (if a is false)
-////16. no, he dose
+//13.(),!,< , >= , === , !=,&&,||
+//14.this is where an Boolean expression is stopped "to soon" as in this example
+//if(isStudent||IsPetOwner||IsDriver) if isStudent is true the IsPetOwner or the IsDriver dose not matter the outcome is alway true
+// 15. he dose get evaluated
+//16. no, he dose not get evaluated
+//17. true
+//18. false
+//19. false
+//20. i can use () here is an example 2+(2*6)
