@@ -1,0 +1,99 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 1em 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 1em;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #f39c12;
+}
+
+section {
+    padding: 2em;
+    margin: 2em 0;
+}
+
+.content {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 2em;
+    border-radius: 10px;
+}
+
+h1, h2 {
+    color: #f39c12;
+}
+
+img, video {
+    width: 100%;
+    height: auto;
+    margin-top: 1em;
+    border-radius: 10px;
+}
+
+.text-section {
+    margin-top: 2em;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+form label {
+    margin-top: 1em;
+    color: #f39c12;
+}
+
+form input, form textarea, form button {
+    margin-top: 0.5em;
+    padding: 0.5em;
+    font-size: 1em;
+    border-radius: 5px;
+    border: none;
+}
+
+form input, form textarea {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #333;
+}
+
+form button {
+    background-color: #f39c12;
+    color: #fff;
+    cursor: pointer;
+    padding: 1em;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #e67e22;
+}
