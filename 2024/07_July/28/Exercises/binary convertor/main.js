@@ -18,6 +18,5 @@ function textToBinary(string) {
     })
     .join(" ");
 }
-console.log(name);
 console.log(binaryName);
 console.log(binaryToText(binaryName));
