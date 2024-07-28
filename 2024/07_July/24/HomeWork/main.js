@@ -87,8 +87,8 @@ function checkEligibility(ageCC, isStudentCC) {
     return "You are a young adult student.";
   else if (ageCC > 18 && ageCC < 24 && !isStudentCC)
     return "You are a young adult non-student.";
-  else if (ageCC > 25 && isStudentCC) "You are an adult student.";
-  else if (ageCC > 25 && !isStudentCC) "You are an adult non-student.";
+  else if (ageCC > 25 && isStudentCC) return "You are an adult student.";
+  else if (ageCC > 25 && !isStudentCC) return "You are an adult non-student.";
 }
 console.log(checkEligibility(ageCCT, isStudentCCT));
 //String Comparison and Manipulation:
