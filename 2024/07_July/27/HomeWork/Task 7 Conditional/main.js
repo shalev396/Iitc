@@ -131,4 +131,206 @@ switch (grade1) {
 //18.
 let number2;
 let sign;
-if (number < 0) sign = "-";
+if (number2 < 0) sign = "-";
+else if (number2 > 0) sigh = "+";
+else sigh = "0";
+//19.
+let year1;
+let isCenturyLeapYear;
+if (year1 % 400 === 0) isCenturyLeapYear = true;
+else isCenturyLeapYear = false;
+//20.
+let month1;
+let daysInMonth;
+switch (month1) {
+  case 1:
+    daysInMonth = 31;
+    break;
+  case 2:
+    daysInMonth = 28;
+    break;
+  case 3:
+    daysInMonth = 31;
+    break;
+  case 4:
+    daysInMonth = 30;
+    break;
+  case 5:
+    daysInMonth = 31;
+    break;
+  case 6:
+    daysInMonth = 30;
+    break;
+  case 7:
+    daysInMonth = 31;
+    break;
+  case 8:
+    daysInMonth = 31;
+    break;
+  case 9:
+    daysInMonth = 30;
+    break;
+  case 10:
+    daysInMonth = 31;
+    break;
+  case 11:
+    daysInMonth = 30;
+    break;
+  case 12:
+    daysInMonth = 31;
+    break;
+}
+//21
+let number3;
+let parity;
+if (number3 < 0) {
+  sign = "-";
+  if (number3 % 2 === 0) parity = true;
+  else parity = false;
+} else if (number3 > 0) {
+  sigh = "+";
+  if (number3 % 2 === 0) parity = true;
+  else parity = false;
+} else {
+  sigh = "0";
+  if (number3 % 2 === 0) parity = true;
+  else parity = false;
+}
+//22.
+let score1;
+let attendance;
+let grade2;
+switch (score1) {
+  case "A":
+    grade2 = "excellent";
+    if (attendance < 80) {
+      score1 = "B";
+      grade2 = "very good";
+    }
+    break;
+  case "B":
+    grade2 = "very good";
+    if (attendance < 80) {
+      score1 = "C";
+      grade2 = "not very good";
+    }
+    break;
+  case "C":
+    grade2 = "not very good";
+    if (attendance < 80) {
+      score1 = "D";
+      grade2 = "good";
+    }
+    break;
+  case "D":
+    grade2 = "good";
+    if (attendance < 80) {
+      score1 = "F";
+      grade2 = "not good";
+    }
+    break;
+  case "F":
+    grade2 = "not good";
+    break;
+}
+//23.
+let year2;
+let IsLeapYear1;
+if (year2 % 4 === 0 && year2 % 400 !== 0) IsLeapYear1 = true;
+else IsLeapYear1 = false;
+//24.
+let age2;
+let isEmployed;
+if (age2 < 18) console.log("student");
+else if (age2 > 18 && isEmployed) console.log("Employed adult");
+else if (age2 > 18 && !isEmployed) console.log("Unemployed adult");
+else if (age2 > 65) console.log("retiree");
+
+//25.
+let month2;
+let season1;
+switch (month2) {
+  case 1:
+  case 2:
+  case 3:
+    season1 = "winter";
+    break;
+  case 4:
+  case 5:
+  case 6:
+    season1 = "spring";
+    break;
+  case 7:
+  case 8:
+  case 9:
+    season1 = "summer";
+    break;
+  case 10:
+  case 11:
+  case 12:
+    season1 = "fall";
+    break;
+}
+//26.
+let x;
+let y;
+if (x < 0 && Y < 0) console.log("quadrant 1");
+else if (x < 0 && Y > 0) console.log("quadrant 2");
+else if (x > 0 && Y > 0) console.log("quadrant 3");
+else if (x > 0 && Y < 0) console.log("quadrant 4");
+//27. idk how to do this correctly https://commons.wikimedia.org/wiki/File:Phase_diagram_of_water.svg
+let temperature1;
+let pressure; //pa
+if (temperature1 < 0 && pressure >= 109) console.log("solid");
+else if (
+  temperature1 > 0 &&
+  temperature1 < 100 &&
+  pressure < 109 &&
+  pressure > 100
+)
+  console.log("liquid");
+else if (temperature1 < 0 && pressure > 100) console.log("gas");
+//28.
+let days;
+let month3;
+let isLeapYear1;
+switch (month3) {
+  case 1:
+  case 3:
+  case 5:
+  case 7:
+  case 8:
+  case 10:
+  case 12:
+    days = 31;
+    break;
+  case 4:
+  case 6:
+  case 9:
+  case 11:
+    days = 30;
+    break;
+  case 2:
+    if (isLeapYear1) days = 29;
+    else days = 28;
+    break;
+  default:
+    days = 0;
+    break;
+}
+//29.
+let a;
+let b;
+let c;
+let canTriangle;
+if (a + b < c) canTriangle = false;
+else if (a + c < b) canTriangle = false;
+else if (ac + b < a) canTriangle = false;
+else canTriangle = true;
+//30 i dont understand th question
+//31
+let number4;
+let parity1 = number4 % 2 === 0 ? true : false;
+//32
+let age3;
+let canVote1 = age3 > 18 ? true : false;
