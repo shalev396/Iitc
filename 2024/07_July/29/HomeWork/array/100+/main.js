@@ -1,8 +1,3 @@
-//total hw
-//Array 100+20+8v
-//loops 25+5v+30
-//Math Methods 25 +25
-//abc 1
 //:(
 //1.V
 let fruits = [];
@@ -140,7 +135,7 @@ console.log(reverseArray(numbers));
 fruits = fruits.sort();
 //15.SKIPING IT!!!!!!!
 //16.NEW TERITORY I AM SKIPPING MAP()
-let lengths = fruits.map((fruit) => fruit.length); ///////////////
+let lengths = fruits.map((fruit) => fruit.length); ///////////////doctor google ,i dont understand it "=>"
 //17.NEW TERITORY I AM SKIPPING FILTR()
 //18.NEW TERITORY I AM SKIPPING find()
 //19.NEW TERITORY I AM SKIPPING some()
