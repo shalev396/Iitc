@@ -12,7 +12,7 @@ function charRepeater(char, num) {
 }
 charRepeater("*", 5);
 //1.1
-function charRepeater2(char, num) {
+function charRepeater2(num) {
   let str = "";
   for (let i = 1; i <= num; i++) {
     for (let j = 1; j <= i; j++) {
@@ -22,7 +22,7 @@ function charRepeater2(char, num) {
   }
   console.log(str);
 }
-charRepeater2("*", 5);
+charRepeater2(5);
 //2.
 function multiplicationBoard(num) {
   for (let i = 1; i <= num; i++) {

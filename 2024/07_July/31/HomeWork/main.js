@@ -145,20 +145,22 @@ function withdraw(amount) {
   }
 }
 deposit(100);
+console.log(bankAccount);
 withdraw(100);
+console.log(bankAccount);
 //13Create an object called circle with properties: radius (number) and color (string).
 let circle = {
   radius: 1,
   color: "blue",
-  calculatedArea: function (params) {
-    return Math.pow(circle.radius) * Math.PI;
+  calculatedArea: function () {
+    return Math.pow(circle.radius, 2) * Math.PI;
   },
   calculateCircumference: function () {
     return 2 * Math.PI * circle.radius;
   },
 };
-circle.calculatedArea();
-circle.calculateCircumference();
+console.log(circle.calculatedArea());
+console.log(circle.calculateCircumference());
 //14.Create an object called student with properties: name (string) and grades (array of numbers).
 let student = {
   name: "shalev",
@@ -168,13 +170,13 @@ let student = {
     for (let i = 0; i < student.grades.length; i++) {
       sum += student.grades[i];
     }
-    return sum / student.length;
+    return sum / student.grades.length;
   },
   getLetterGrade: function () {
-    if (calculateAverage() >= 90) return "A";
-    else if (calculateAverage() >= 80) return "B";
-    else if (calculateAverage() >= 70) return "C";
-    else if (calculateAverage() >= 60) return "D";
+    if (student.calculateAverage() >= 90) return "A";
+    else if (student.calculateAverage() >= 80) return "B";
+    else if (student.calculateAverage() >= 70) return "C";
+    else if (student.calculateAverage() >= 60) return "D";
     else return "F";
   },
 };
@@ -183,20 +185,28 @@ console.log(student.getLetterGrade());
 //15.Create an object called todoList with properties: tasks (array of strings) and completedTasks (array of strings).
 let todoList = {
   tasks: ["task 1", "task 2"],
-  completedTask: ["task 3", "task 4"],
+  completedTasks: ["task 3", "task 4"],
   addTask: function (task) {
     todoList.tasks.push(task);
   },
   completedTask: function (task) {
     for (let i = 0; i < todoList.tasks.length; i++) {
       if (todoList.tasks[i] === task) {
-        todoList.completedTask.push(todoList.tasks.pop());
+        todoList.completedTasks.push(todoList.tasks.splice(i, 1));
       } else {
-        todoList.completedTask.push(task);
+        todoList.completedTasks.push(task);
       }
     }
   },
 };
+console.log(todoList.tasks);
+console.log(todoList.completedTasks);
+todoList.addTask("task 5");
+console.log(todoList.tasks);
+console.log(todoList.completedTasks);
+todoList.completedTask("task 2");
+console.log(todoList.tasks);
+console.log(todoList.completedTasks);
 //16.Create an object called book with properties: title (string), author (string), isbn (string), and isAvailable (boolean).
 let book5 = {
   title: "book5",
@@ -209,6 +219,10 @@ let book5 = {
     book5.isAvailable = true;
   },
 };
+book5.checkOut();
+console.log(book5);
+book5.return();
+console.log(book5);
 //17.Create an object called colorMixer with properties: color1 (string) and color2 (string).
 let colorMixer = {
   color1: "red",
@@ -219,6 +233,7 @@ let colorMixer = {
     }
   },
 };
+console.log(colorMixer.mix());
 //18.Create an object called tempConverter with properties: celsius (number) and fahrenheit (number).
 let tempConverter = {
   celsius: 1,
@@ -238,6 +253,10 @@ let tempConverter = {
     return tempConverter.fahrenheit;
   },
 };
+tempConverter.setC(25);
+console.log(tempConverter.getF()); //77
+tempConverter.setF(100);
+console.log(tempConverter.getC()); //37
 //19Create an object called pet with properties: name (string), type (string), hunger (number), and happiness (number).
 let pet = {
   name: "simba",
@@ -252,37 +271,40 @@ let pet = {
   },
   getStatus: function () {
     for (let i = 0; i < Object.keys(pet).length; i++) {
-      `${Object.keys(pet)[i].valueOf(pet)}:${Object.values(pet)[i].valueOf(
-        pet
-      )}`;
+      return `name:${pet.name},type:${pet.type},hunger:${pet.hunger},happiness:${pet.happiness}`;
     }
   },
 };
+pet.feed();
+pet.play();
+console.log(pet.getStatus());
 //20Create an object called quiz with properties: questions (array of objects) and score (number).
-let question = {
-  name: "color of sky",
-  optionArray: ["red", "green", "blue", "yellow"],
-  correctAnswer: 3,
-};
-let objArray = [question];
-question = {
+let objArray = [];
+
+let question = new Object({
+  name: "1+2=",
+  optionArray: [1, 2, 3, 4],
+  correctAnswer: 4,
+});
+objArray.push(question);
+question = new Object({
   name: "2+2=",
   optionArray: [1, 2, 3, 4],
   correctAnswer: 4,
-};
+});
 objArray.push(question);
 let quiz = {
   questionArray: objArray,
   score: 0,
 
   askQuestion: function (index) {
-    {
-      console.log(quiz.questionArray[index].name);
-      for (let j = 0; j < quiz.questionArray[index].length; j++) {
-        console.log(quiz.questionArray[index][i]);
-      }
-      return prompt("please enter the index of the answer");
+    console.log(quiz.questionArray);
+    console.log(quiz.questionArray[0]);
+    console.log(quiz.questionArray[index].name);
+    for (let j = 0; j < quiz.questionArray[index].length; j++) {
+      console.log(quiz.questionArray[index][i]);
     }
+    return prompt("please enter the index of the answer");
   },
   checkAnswer: function (index, answer) {
     if (index === answer) {
@@ -291,8 +313,9 @@ let quiz = {
   },
 };
 for (let i = 0; i < quiz.questionArray.length; i++) {
-  quiz.checkAnswer(quiz.askQuestion(), i);
+  quiz.checkAnswer(quiz.askQuestion(), 0);
 }
+console.log(quiz.score);
 //21.Create an object called inventory with properties: items (array of objects) where each item has name (string) and quantity (number).
 let item = {
   name: "iphone",
@@ -332,7 +355,26 @@ let inventory = {
     for (let i = 0; i < inventory.items.length; i++) {
       if (inventory.items[i].name === name) {
         return inventory[i].quantity;
-      } else return false;
+      } else return 0;
     }
   },
+};
+//22.Create an object called dice with properties: sides (number) and lastRoll (number).
+let dice = {
+  sides: 6,
+  lastRoll: 1,
+  roll: function () {
+    dice.lastRoll = getRandomInt(1, dice.sides);
+    return dice.lastRoll;
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+  },
+};
+//23.Create an object called wordCounter with a property text (string).
+let wordCounter = {
+  text: "",
+  countWords: function () {},
+  countCharacter: function (includeSpaces) {},
+  getFrequentWords: function (a) {},
 };

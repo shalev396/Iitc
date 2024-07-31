@@ -45,3 +45,7 @@ for (let row = 0; row < n; row++) {
   }
   console.log(rowStr);
 }
+//get random
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
