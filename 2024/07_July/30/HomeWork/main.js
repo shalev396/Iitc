@@ -121,13 +121,7 @@ function frequency(str) {
 frequency("hello");
 //9.
 function merg2DArray(arr) {
-  let count = 0;
   let array = [];
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; j < arr[i].length; j++) {
-      count++;
-    }
-  }
   let place = 0;
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr[i].length; j++) {
@@ -218,7 +212,7 @@ function sumArray(array) {
 let arr = [
   [3, 1, 2], //6
   [1, 4, 5], //10
-  [2, 3, 0], //6
+  [2, 3, 0], //5
 ];
 console.log(arr);
 sortBySum(arr);
