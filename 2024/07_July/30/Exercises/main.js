@@ -48,6 +48,21 @@ function multiplicationBoard(num) {
   }
 }
 multiplicationBoard(10);
+//3.1 print multiplication board of num in a table
+console.log("Task 3.1");
+function multiplicationBoardTabel(num) {
+  let arr1D = [];
+  let arr2D = [];
+  for (let i = 0; i <= num; i++) {
+    for (let j = 0; j <= num; j++) {
+      arr2D.push(i * j);
+    }
+    arr1D.push(arr2D);
+    arr2D = [];
+  }
+  console.table(arr1D);
+}
+multiplicationBoardTabel(10);
 // multiplicationBoard(Math.pow(2, 31)); my impulsive thoughts won the battle and crashed my computer :(
 //4. searching a value in 2d array and return its location
 console.log("Task 4");

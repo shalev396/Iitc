@@ -370,8 +370,111 @@ let dice = {
 console.log(dice.roll());
 //23.Create an object called wordCounter with a property text (string).
 let wordCounter = {
-  text: "hello world",
-  countWords: function () {},
-  countCharacter: function (includeSpaces) {},
-  getFrequentWords: function (a) {},
+  text: "hello world world good world bad good",
+  countWords: function () {
+    return wordCounter.text.split(" ").length;
+  },
+  countCharacter: function (includeSpaces) {
+    let count = 0;
+    if (includeSpaces) {
+      return wordCounter.text.length;
+    } else
+      for (let i = 0; i < wordCounter.text.length; i++) {
+        if (wordCounter.text[i] !== " ") {
+          count++;
+        }
+      }
+    return count;
+  },
+  getFrequentWords: function () {
+    let ArrayWords = wordCounter.text.split(" ");
+    let arrayCount = [];
+    for (let k = 0; k < ArrayWords.length; k++) {
+      arrayCount.push(0);
+    }
+    for (let i = 0; i < ArrayWords.length; i++) {
+      for (let j = 0; j < ArrayWords.length; j++) {
+        if (ArrayWords[i] === ArrayWords[j] && i !== j) {
+          arrayCount[i]++;
+          ArrayWords.splice(j, 1);
+          arrayCount.splice(j, 1);
+        }
+      }
+    }
+    let temp;
+    for (let i = 0; i < arrayCount.length - 1; i++) {
+      if (arrayCount[i] < arrayCount[i + 1]) {
+        temp = arrayCount[i];
+        arrayCount[i] = arrayCount[i + 1];
+        arrayCount[i + 1] = temp;
+        temp = 0;
+
+        temp = ArrayWords[i];
+        ArrayWords[i] = ArrayWords[i + 1];
+        ArrayWords[i + 1] = temp;
+        temp = 0;
+      }
+    }
+    console.log(ArrayWords);
+    console.log(arrayCount);
+    return ArrayWords[0];
+  },
+};
+console.log(wordCounter.countWords());
+console.log(wordCounter.countCharacter());
+console.log(wordCounter.getFrequentWords());
+//24.Create an object called calculator with properties: result (number)
+let calculator = {
+  result: 0,
+  add: function (n) {
+    calculator.result += n;
+  },
+  subtract: function (n) {
+    calculator.result -= n;
+  },
+  multiply: function (n) {
+    calculator.result *= n;
+  },
+  divide: function (n) {
+    calculator.result /= n;
+  },
+  clear: function () {
+    calculator.result = 0;
+  },
+};
+//25.Create an object called game with properties: playerScore (number) and computerScore (number).
+let game = {
+  playerScore: 0,
+  computerScore: 0,
+  play: function (playerChoice) {
+    return prompt("1 rock, 2 paper, 3 scissors");
+  },
+  getComputerChoice: function () {
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    return getRandomInt(1, 3);
+  },
+  determineWinner: function (player, computer) {
+    if (player === 1 && computer === 3) {
+      game.playerScore++;
+    } else if (player === 2 && computer === 1) {
+      game.playerScore++;
+    } else if (player === 3 && computer === 2) {
+      game.playerScore++;
+    } else if (player === 3 && computer === 1) {
+      game.computerScore++;
+    } else if (player === 1 && computer === 2) {
+      game.computerScore++;
+    } else if (player === 2 && computer === 3) {
+      game.computerScore++;
+    }
+  },
+};
+//26.Create an object called bmiCalculator with properties: weight (number) and height (number).
+let bmiCalculator = {
+  weight: 0,
+  hight: 0,
+  setMetricUnits: function (weight, height) {},
+  setImperialUnits: function (weight, height) {},
 };

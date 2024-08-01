@@ -104,8 +104,10 @@ function sum2DArray(arr) {
 // let array2D = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]];
 sum2DArray(array2D);
 //8. bonos, arry for abc and arrsay for count
+console.log("task 8 only english");
 function frequency(str) {
   let alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+  let text = "";
   for (let i = 0; i < alphabet.length; i++) {
     let count = 0;
     for (let j = 0; j < str.length; j++) {
@@ -114,11 +116,37 @@ function frequency(str) {
       }
     }
     if (count !== 0) {
-      console.log(`${alphabet[i]}:${count}`);
+      text += `${alphabet[i]}:${count}  `;
     }
   }
+  console.log(text);
 }
 frequency("hello");
+//8.1 impulsive thoughts won again
+console.log("task 8 all char");
+function frequency1(str) {
+  let fullabc = "";
+  let text = "";
+  for (let j = 0; j < 65535; j++) {
+    fullabc += String.fromCharCode(j) + ""; //0-65535
+  }
+  let abcArray = fullabc.split("");
+  for (let i = 0; i < abcArray.length; i++) {
+    let count = 0;
+    for (let j = 0; j < str.length; j++) {
+      if (abcArray[i] === str[j]) {
+        count++;
+      }
+    }
+    if (count !== 0) {
+      text += `${abcArray[i]}:${count}  `;
+    }
+  }
+  // console.log(fullabc);
+  console.log(text);
+}
+frequency1("hello");
+
 //9.
 function merg2DArray(arr) {
   let array = [];
