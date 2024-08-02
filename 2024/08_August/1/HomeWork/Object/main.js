@@ -442,16 +442,25 @@ let calculator = {
     calculator.result = 0;
   },
 };
+calculator.add(10);
+calculator.subtract(2);
+calculator.divide(4);
+calculator.multiply(2);
+console.log(calculator.result);
+calculator.clear();
+console.log(calculator.result);
 //25.Create an object called game with properties: playerScore (number) and computerScore (number).
 let game = {
   playerScore: 0,
   computerScore: 0,
   play: function (playerChoice) {
-    return prompt("1 rock, 2 paper, 3 scissors");
+    game.determineWinner(parseInt(playerChoice), game.getComputerChoice());
   },
   getComputerChoice: function () {
     function getRandomInt(min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
+      let x = Math.floor(Math.random() * (max - min + 1)) + min;
+      console.log(x);
+      return parseInt(x);
     }
     return getRandomInt(1, 3);
   },
@@ -471,10 +480,157 @@ let game = {
     }
   },
 };
+game.play(prompt("1 rock 2 paper 3 scissors")); //remember 33% of the time is a draw
+console.log(`player:${game.playerScore},computer:${game.computerScore}`);
+
 //26.Create an object called bmiCalculator with properties: weight (number) and height (number).
 let bmiCalculator = {
   weight: 0,
   hight: 0,
-  setMetricUnits: function (weight, height) {},
-  setImperialUnits: function (weight, height) {},
+  setMetricUnits: function (weight, height) {
+    bmiCalculator.weight = parseInt(weight);
+    bmiCalculator.hight = parseInt(height);
+  },
+  setImperialUnits: function (weight, height) {
+    bmiCalculator.weight = weight * 2.205;
+    bmiCalculator.hight = height * 39.3700787402;
+  },
+  calculate: function () {
+    let bmi = parseFloat(
+      bmiCalculator.weight / (bmiCalculator.hight * bmiCalculator.hight)
+    );
+    console.log(bmi);
+    if (bmi <= 30) {
+      return `bmi: ${bmi.toString()}, normal weight`;
+    } else if (bmi > 30) {
+      return `bmi: ${bmi.toString()}, oveweight`;
+    }
+  },
+}; ///////////need fix
+bmiCalculator.setMetricUnits(100, 200);
+console.log(bmiCalculator.calculate());
+bmiCalculator.setMetricUnits(100000, 150);
+console.log(bmiCalculator.calculate());
+//27.
+let timeConverter = {
+  seconds: 0,
+  setTime: function (seconds) {
+    timeConverter.seconds = seconds;
+  },
+  getHours: function () {
+    return timeConverter.seconds / 60 / 60;
+  },
+  getMinuets: function () {
+    return timeConverter.seconds / 60;
+  },
+  getSeconds: function () {
+    return timeConverter.seconds;
+  },
 };
+console.log();
+//28
+let shoppingCart = {
+  items: [
+    {
+      name: "eggs",
+      quantity: 1,
+      prise: 10,
+    },
+    {
+      name: "milk",
+      quantity: 2,
+      milk: 8,
+    },
+  ],
+  total: 0,
+  removeItem: function (name) {
+    for (let i = 0; i < shoppingCart.items.length; i++) {
+      if (shoppingCart.items[i].name === name) {
+        shoppingCart.items = shoppingCart.items.splice(i, 1);
+      }
+    }
+  },
+  addItem: function (name, price, quantity) {
+    shoppingCart.items.push({
+      name: name,
+      quantity: quantity,
+      prise: price,
+    });
+  },
+  calculateTotal: function () {
+    let sum = 0;
+    for (let i = 0; i < shoppingCart.items.length; i++) {
+      sum += shoppingCart.items[i].prise;
+    }
+    return sum;
+  },
+};
+//29.
+let morseTranslator = {
+  a: ".-",
+  b: "-...",
+  c: "-.-.",
+  d: "-..",
+  e: ".",
+  f: "..-.",
+  g: "--.",
+  h: "....",
+  i: "..",
+  j: ".---",
+  k: "-.-",
+  l: ".-..",
+  m: "--",
+  n: "-.",
+  o: "---",
+  p: ".--.",
+  q: "--.-",
+  r: ".-.",
+  s: "...",
+  t: "-",
+  u: "..-",
+  v: "...-",
+  w: ".--",
+  x: "-..-",
+  y: "-.--",
+  z: "--..",
+  " ": "/",
+  1: ".----",
+  2: "..---",
+  3: "...--",
+  4: "....-",
+  5: ".....",
+  6: "-....",
+  7: "--...",
+  8: "---..",
+  9: "----.",
+  0: "-----",
+  textToMorse: function (text) {
+    text = text.toLowerCase();
+    text = text.splite("").map(function (char) {
+      return morseCode[char.toLowerCase()] || "";
+    }); //used google for this part
+  },
+  morseToText: function (morse) {},
+};
+//console.log(morseTranslator.textToMorse("sos"));
+//30.
+let stopWatch = {
+  startTime: 0,
+  isRunning: false,
+  elapsedTime: 1,
+  start: function () {
+    stopWatch.startTime = new Date();
+  },
+  stop: function () {
+    let endTime = new Date();
+    stopWatch.elapsedTime = endTime - stopWatch.startTime;
+  },
+  reset: function () {},
+  getElapsedTime: function () {
+    return stopWatch.elapsedTime;
+  },
+};
+stopWatch.start();
+for (let i = 0; i < 1000000; i++) {}
+stopWatch.stop();
+console.log(`${stopWatch.getElapsedTime() / 1000} seconds`);
