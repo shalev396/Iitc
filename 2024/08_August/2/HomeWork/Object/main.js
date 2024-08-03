@@ -497,7 +497,7 @@ let bmiCalculator = {
   },
   calculate: function () {
     let bmi = parseFloat(
-      bmiCalculator.weight / (bmiCalculator.hight * bmiCalculator.hight)
+      bmiCalculator.weight / (calculator.height * calculator.height)
     );
     console.log(bmi);
     if (bmi <= 30) {
@@ -506,7 +506,7 @@ let bmiCalculator = {
       return `bmi: ${bmi.toString()}, oveweight`;
     }
   },
-}; ///////////need fix
+};
 bmiCalculator.setMetricUnits(100, 200);
 console.log(bmiCalculator.calculate());
 bmiCalculator.setMetricUnits(100000, 150);
@@ -527,9 +527,9 @@ let timeConverter = {
     return timeConverter.seconds;
   },
 };
-timeConverter(7200);
+timeConverter.setTime(7200);
 console.log(timeConverter.getHours());
-console.log(timeConverter.Minutes());
+console.log(timeConverter.getMinutes());
 console.log(timeConverter.getSeconds());
 //28
 let shoppingCart = {
@@ -537,19 +537,19 @@ let shoppingCart = {
     {
       name: "eggs",
       quantity: 1,
-      prise: 10,
+      price: 10,
     },
     {
       name: "milk",
       quantity: 2,
-      milk: 8,
+      price: 8,
     },
   ],
   total: 0,
   removeItem: function (name) {
     for (let i = 0; i < shoppingCart.items.length; i++) {
       if (shoppingCart.items[i].name === name) {
-        shoppingCart.items = shoppingCart.items.splice(i, 1);
+        shoppingCart.items.splice(i, 1);
       }
     }
   },
@@ -557,22 +557,23 @@ let shoppingCart = {
     shoppingCart.items.push({
       name: name,
       quantity: quantity,
-      prise: price,
+      price: parseInt(price),
     });
   },
   calculateTotal: function () {
     let sum = 0;
     for (let i = 0; i < shoppingCart.items.length; i++) {
-      sum += shoppingCart.items[i].prise;
+      sum += parseInt(
+        shoppingCart.items[i].price * shoppingCart.items[i].quantity
+      );
     }
-    return sum;
+    shoppingCart.total = sum;
   },
 };
-console.log(shoppingCart.items);
 shoppingCart.addItem("butter", 7, 2);
 shoppingCart.removeItem("milk");
-console.log(shoppingCart.items);
-console.log(shoppingCart.calculateTotal());
+shoppingCart.calculateTotal();
+console.log(shoppingCart.total);
 
 //29.
 let morseTranslator = {
@@ -615,12 +616,29 @@ let morseTranslator = {
   0: "-----",
   textToMorse: function (text) {
     text = text.toLowerCase();
-    text = text.splite("").map(function (char) {
-      return morseCode[char.toLowerCase()] || "";
-    }); //used google for this part
+    let morseCode = text.split("").map(function (char) {
+      //the .map was added from google
+      return morseTranslator[char] || "";
+    });
+    return morseCode.join(" ");
   },
-  morseToText: function (morse) {},
+  morseToText: function (morse) {
+    let morseToTextMap = {};
+    for (let key in this) {
+      //google
+      if (typeof this[key] === "string") {
+        morseToTextMap[this[key]] = key;
+      }
+    }
+    let text = morse.split(" ").map(function (morseChar) {
+      //the .map was added from google
+      return morseToTextMap[morseChar] || "";
+    });
+    return text.join("");
+  },
 };
+console.log(morseTranslator.textToMorse("sos"));
+
 //console.log(morseTranslator.textToMorse("sos"));
 //30.
 let stopWatch = {
@@ -640,6 +658,6 @@ let stopWatch = {
   },
 };
 stopWatch.start();
-for (let i = 0; i < 1000000; i++) {}
+for (let i = 0; i < 10000000; i++) {}
 stopWatch.stop();
 console.log(`${stopWatch.getElapsedTime() / 1000} seconds`);
