@@ -85,3 +85,22 @@ function frequency1(str) {
   console.log(text);
 }
 frequency1(prompt("say something"));
+//9. object split and sort to new object
+let employees = [
+  { name: "Shelev Ben Moshe", department: "Development", yearOfExp: 5 },
+  { name: "Jone Doe", department: "Engineering", yearOfExp: 5 },
+  { name: "Jane Smith", department: "Development", yearOfExp: 3 },
+  { name: "Lucky Brown", department: "Engineering", yearOfExp: 3 },
+  { name: "Mike Davis", department: "Development", yearOfExp: 5 },
+];
+console.log(groupBy(employees, "department"));
+console.log(groupBy(employees, "yearOfExp"));
+function groupBy(objArray, key) {
+  let sortedObj = {};
+  for (let i = 0; i < objArray.length; i++) {
+    if (sortedObj[objArray[i][key]] !== undefined)
+      sortedObj[objArray[i][key]].push(objArray[i]);
+    else sortedObj[objArray[i][key]] = [objArray[i]];
+  }
+  return sortedObj;
+}
