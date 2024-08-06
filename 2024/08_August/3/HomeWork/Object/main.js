@@ -644,7 +644,7 @@ console.log(morseTranslator.textToMorse("sos"));
 let stopWatch = {
   startTime: 0,
   isRunning: false,
-  elapsedTime: 1,
+  elapsedTime: 0,
   start: function () {
     stopWatch.startTime = new Date();
   },
@@ -652,7 +652,10 @@ let stopWatch = {
     let endTime = new Date();
     stopWatch.elapsedTime = endTime - stopWatch.startTime;
   },
-  reset: function () {},
+  reset: function () {
+    stopWatch.startTime = 0;
+    stopWatch.elapsedTime = 0;
+  },
   getElapsedTime: function () {
     return stopWatch.elapsedTime;
   },

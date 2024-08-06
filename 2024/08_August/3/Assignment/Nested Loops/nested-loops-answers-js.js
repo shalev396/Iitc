@@ -1,224 +1,224 @@
-// Exercise 1: Print a 2x2 grid of asterisks
-console.log("Exercise 1:");
-for (let i = 0; i < 2; i++) {
-  let row = "";
-  for (let j = 0; j < 2; j++) {
-    row += "* ";
-  }
-  console.log(row);
-}
+// // Exercise 1: Print a 2x2 grid of asterisks
+// console.log("Exercise 1:");
+// for (let i = 0; i < 2; i++) {
+//   let row = "";
+//   for (let j = 0; j < 2; j++) {
+//     row += "* ";
+//   }
+//   console.log(row);
+// }
 
-// Exercise 2: Print numbers from 1 to 4 in a 2x2 grid
-console.log("\nExercise 2:");
-let count = 1;
-for (let i = 0; i < 2; i++) {
-  let row = "";
-  for (let j = 0; j < 2; j++) {
-    row += count + " ";
-    count++;
-  }
-  console.log(row);
-}
+// // Exercise 2: Print numbers from 1 to 4 in a 2x2 grid
+// console.log("\nExercise 2:");
+// let count = 1;
+// for (let i = 0; i < 2; i++) {
+//   let row = "";
+//   for (let j = 0; j < 2; j++) {
+//     row += count + " ";
+//     count++;
+//   }
+//   console.log(row);
+// }
 
-// Exercise 3: Print a right-angled triangle of asterisks with 3 rows
-console.log("\nExercise 3:");
-for (let i = 1; i <= 3; i++) {
-  let row = "";
-  for (let j = 1; j <= i; j++) {
-    row += "* ";
-  }
-  console.log(row);
-}
+// // Exercise 3: Print a right-angled triangle of asterisks with 3 rows
+// console.log("\nExercise 3:");
+// for (let i = 1; i <= 3; i++) {
+//   let row = "";
+//   for (let j = 1; j <= i; j++) {
+//     row += "* ";
+//   }
+//   console.log(row);
+// }
 
-// Exercise 4: Print a 3x3 grid where each cell contains the sum of its indices
-console.log("\nExercise 4:");
-for (let i = 0; i < 3; i++) {
-  let row = "";
-  for (let j = 0; j < 3; j++) {
-    row += i + j + " ";
-  }
-  console.log(row);
-}
+// // Exercise 4: Print a 3x3 grid where each cell contains the sum of its indices
+// console.log("\nExercise 4:");
+// for (let i = 0; i < 3; i++) {
+//   let row = "";
+//   for (let j = 0; j < 3; j++) {
+//     row += i + j + " ";
+//   }
+//   console.log(row);
+// }
 
-// Exercise 5: Print a 3x3 multiplication table
-console.log("\nExercise 5:");
-for (let i = 1; i <= 3; i++) {
-  let row = "";
-  for (let j = 1; j <= 3; j++) {
-    row += i * j + " ";
-  }
-  console.log(row);
-}
+// // Exercise 5: Print a 3x3 multiplication table
+// console.log("\nExercise 5:");
+// for (let i = 1; i <= 3; i++) {
+//   let row = "";
+//   for (let j = 1; j <= 3; j++) {
+//     row += i * j + " ";
+//   }
+//   console.log(row);
+// }
 
-// Exercise 6: Print a square border of asterisks with side length 3
-console.log("\nExercise 6:");
-for (let i = 1; i <= 3; i++) {
-  let row = "";
-  for (let j = 1; j <= 3; j++) {
-    if (i === 1 || i === 3 || j === 1 || j === 3) {
-      row += "* ";
-    } else {
-      row += "  ";
-    }
-  }
-  console.log(row);
-}
+// // Exercise 6: Print a square border of asterisks with side length 3
+// console.log("\nExercise 6:");
+// for (let i = 1; i <= 3; i++) {
+//   let row = "";
+//   for (let j = 1; j <= 3; j++) {
+//     if (i === 1 || i === 3 || j === 1 || j === 3) {
+//       row += "* ";
+//     } else {
+//       row += "  ";
+//     }
+//   }
+//   console.log(row);
+// }
 
-// Exercise 7: Print numbers from 1 to 9 in a 3x3 grid
-console.log("\nExercise 7:");
-count = 1;
-for (let i = 0; i < 3; i++) {
-  let row = "";
-  for (let j = 0; j < 3; j++) {
-    row += count + " ";
-    count++;
-  }
-  console.log(row);
-}
+// // Exercise 7: Print numbers from 1 to 9 in a 3x3 grid
+// console.log("\nExercise 7:");
+// count = 1;
+// for (let i = 0; i < 3; i++) {
+//   let row = "";
+//   for (let j = 0; j < 3; j++) {
+//     row += count + " ";
+//     count++;
+//   }
+//   console.log(row);
+// }
 
-// Exercise 8: Print a 3x3 grid of even numbers starting from 2
-console.log("\nExercise 8:");
-let evenNumber = 2;
-for (let i = 0; i < 3; i++) {
-  let row = "";
-  for (let j = 0; j < 3; j++) {
-    row += evenNumber + " ";
-    evenNumber += 2;
-  }
-  console.log(row);
-}
+// // Exercise 8: Print a 3x3 grid of even numbers starting from 2
+// console.log("\nExercise 8:");
+// let evenNumber = 2;
+// for (let i = 0; i < 3; i++) {
+//   let row = "";
+//   for (let j = 0; j < 3; j++) {
+//     row += evenNumber + " ";
+//     evenNumber += 2;
+//   }
+//   console.log(row);
+// }
 
-// Exercise 9: Print a right-angled triangle of numbers with 3 rows
-console.log("\nExercise 9:");
-for (let i = 1; i <= 3; i++) {
-  let row = "";
-  for (let j = 1; j <= i; j++) {
-    row += j + " ";
-  }
-  console.log(row);
-}
+// // Exercise 9: Print a right-angled triangle of numbers with 3 rows
+// console.log("\nExercise 9:");
+// for (let i = 1; i <= 3; i++) {
+//   let row = "";
+//   for (let j = 1; j <= i; j++) {
+//     row += j + " ";
+//   }
+//   console.log(row);
+// }
 
-// Exercise 10: Print a 3x3 checkerboard pattern of 0s and 1s
-console.log("\nExercise 10:");
-for (let i = 0; i < 3; i++) {
-  let row = "";
-  for (let j = 0; j < 3; j++) {
-    row += ((i + j) % 2) + " ";
-  }
-  console.log(row);
-}
+// // Exercise 10: Print a 3x3 checkerboard pattern of 0s and 1s
+// console.log("\nExercise 10:");
+// for (let i = 0; i < 3; i++) {
+//   let row = "";
+//   for (let j = 0; j < 3; j++) {
+//     row += ((i + j) % 2) + " ";
+//   }
+//   console.log(row);
+// }
 
-// Exercise 11: Print a 3x3 grid where each cell contains its row number
-console.log("\nExercise 11:");
-for (let i = 0; i < 3; i++) {
-  let row = "";
-  for (let j = 0; j < 3; j++) {
-    row += i + " ";
-  }
-  console.log(row);
-}
+// // Exercise 11: Print a 3x3 grid where each cell contains its row number
+// console.log("\nExercise 11:");
+// for (let i = 0; i < 3; i++) {
+//   let row = "";
+//   for (let j = 0; j < 3; j++) {
+//     row += i + " ";
+//   }
+//   console.log(row);
+// }
 
-// Exercise 12: Print a 3x3 grid where each cell contains its column number
-console.log("\nExercise 12:");
-for (let i = 0; i < 3; i++) {
-  let row = "";
-  for (let j = 0; j < 3; j++) {
-    row += j + " ";
-  }
-  console.log(row);
-}
+// // Exercise 12: Print a 3x3 grid where each cell contains its column number
+// console.log("\nExercise 12:");
+// for (let i = 0; i < 3; i++) {
+//   let row = "";
+//   for (let j = 0; j < 3; j++) {
+//     row += j + " ";
+//   }
+//   console.log(row);
+// }
 
-// Exercise 13: Print a 4x4 grid of alternating X and O
-console.log("\nExercise 13:");
-for (let i = 0; i < 4; i++) {
-  let row = "";
-  for (let j = 0; j < 4; j++) {
-    row += (i + j) % 2 === 0 ? "X " : "O ";
-  }
-  console.log(row);
-}
+// // Exercise 13: Print a 4x4 grid of alternating X and O
+// console.log("\nExercise 13:");
+// for (let i = 0; i < 4; i++) {
+//   let row = "";
+//   for (let j = 0; j < 4; j++) {
+//     row += (i + j) % 2 === 0 ? "X " : "O ";
+//   }
+//   console.log(row);
+// }
 
-// Exercise 14: Print a right-angled triangle of odd numbers with 4 rows
-console.log("\nExercise 14:");
-let oddNumber = 1;
-for (let i = 1; i <= 4; i++) {
-  let row = "";
-  for (let j = 1; j <= i; j++) {
-    row += oddNumber + " ";
-    oddNumber += 2;
-  }
-  console.log(row);
-}
+// // Exercise 14: Print a right-angled triangle of odd numbers with 4 rows
+// console.log("\nExercise 14:");
+// let oddNumber = 1;
+// for (let i = 1; i <= 4; i++) {
+//   let row = "";
+//   for (let j = 1; j <= i; j++) {
+//     row += oddNumber + " ";
+//     oddNumber += 2;
+//   }
+//   console.log(row);
+// }
 
-// Exercise 15: Print a 3x3 grid where each cell contains the absolute difference between its row and column indices
-console.log("\nExercise 15:");
-for (let i = 0; i < 3; i++) {
-  let row = "";
-  for (let j = 0; j < 3; j++) {
-    row += Math.abs(i - j) + " ";
-  }
-  console.log(row);
-}
+// // Exercise 15: Print a 3x3 grid where each cell contains the absolute difference between its row and column indices
+// console.log("\nExercise 15:");
+// for (let i = 0; i < 3; i++) {
+//   let row = "";
+//   for (let j = 0; j < 3; j++) {
+//     row += Math.abs(i - j) + " ";
+//   }
+//   console.log(row);
+// }
 
-// Exercise 16: Print a hollow right-angled triangle of asterisks with 4 rows
-console.log("\nExercise 16:");
-for (let i = 1; i <= 4; i++) {
-  let row = "";
-  for (let j = 1; j <= i; j++) {
-    if (j === 1 || j === i || i === 4) {
-      row += "* ";
-    } else {
-      row += "  ";
-    }
-  }
-  console.log(row);
-}
+// // Exercise 16: Print a hollow right-angled triangle of asterisks with 4 rows
+// console.log("\nExercise 16:");
+// for (let i = 1; i <= 4; i++) {
+//   let row = "";
+//   for (let j = 1; j <= i; j++) {
+//     if (j === 1 || j === i || i === 4) {
+//       row += "* ";
+//     } else {
+//       row += "  ";
+//     }
+//   }
+//   console.log(row);
+// }
 
-// Exercise 17: Print a 4x4 grid where each cell contains the smaller of its row or column index
-console.log("\nExercise 17:");
-for (let i = 0; i < 4; i++) {
-  let row = "";
-  for (let j = 0; j < 4; j++) {
-    row += Math.min(i, j) + " ";
-  }
-  console.log(row);
-}
+// // Exercise 17: Print a 4x4 grid where each cell contains the smaller of its row or column index
+// console.log("\nExercise 17:");
+// for (let i = 0; i < 4; i++) {
+//   let row = "";
+//   for (let j = 0; j < 4; j++) {
+//     row += Math.min(i, j) + " ";
+//   }
+//   console.log(row);
+// }
 
-// Exercise 18: Print a 4x4 grid where each cell contains the larger of its row or column index
-console.log("\nExercise 18:");
-for (let i = 0; i < 4; i++) {
-  let row = "";
-  for (let j = 0; j < 4; j++) {
-    row += Math.max(i, j) + " ";
-  }
-  console.log(row);
-}
+// // Exercise 18: Print a 4x4 grid where each cell contains the larger of its row or column index
+// console.log("\nExercise 18:");
+// for (let i = 0; i < 4; i++) {
+//   let row = "";
+//   for (let j = 0; j < 4; j++) {
+//     row += Math.max(i, j) + " ";
+//   }
+//   console.log(row);
+// }
 
-// Exercise 19: Print a right-angled triangle of consecutive letters (A-Z) with 4 rows
-console.log("\nExercise 19:");
-let letter = 65; // ASCII code for 'A'
-for (let i = 1; i <= 4; i++) {
-  let row = "";
-  for (let j = 1; j <= i; j++) {
-    row += String.fromCharCode(letter) + " ";
-    letter++;
-  }
-  console.log(row);
-}
+// // Exercise 19: Print a right-angled triangle of consecutive letters (A-Z) with 4 rows
+// console.log("\nExercise 19:");
+// let letter = 65; // ASCII code for 'A'
+// for (let i = 1; i <= 4; i++) {
+//   let row = "";
+//   for (let j = 1; j <= i; j++) {
+//     row += String.fromCharCode(letter) + " ";
+//     letter++;
+//   }
+//   console.log(row);
+// }
 
-// Exercise 20: Print a 3x3 grid where each cell contains the sum of all numbers from 1 to the product of its indices
-console.log("\nExercise 20:");
-for (let i = 0; i < 3; i++) {
-  let row = "";
-  for (let j = 0; j < 3; j++) {
-    let sum = 0;
-    for (let k = 1; k <= (i + 1) * (j + 1); k++) {
-      sum += k;
-    }
-    row += sum + " ";
-  }
-  console.log(row);
-}
+// // Exercise 20: Print a 3x3 grid where each cell contains the sum of all numbers from 1 to the product of its indices
+// console.log("\nExercise 20:");
+// for (let i = 0; i < 3; i++) {
+//   let row = "";
+//   for (let j = 0; j < 3; j++) {
+//     let sum = 0;
+//     for (let k = 1; k <= (i + 1) * (j + 1); k++) {
+//       sum += k;
+//     }
+//     row += sum + " ";
+//   }
+//   console.log(row);
+// }
 
 // Exercise 21: Print a 4x4 grid of ascending numbers in a spiral pattern
 console.log("\nExercise 21:");
@@ -227,19 +227,19 @@ let matrix = Array(n)
   .fill()
   .map(() => Array(n).fill(0));
 let num = 1;
-let top = 0,
+let tops = 0,
   bottom = n - 1,
   left = 0,
   right = n - 1;
 
 while (num <= n * n) {
-  for (let i = left; i <= right; i++) matrix[top][i] = num++;
-  top++;
-  for (let i = top; i <= bottom; i++) matrix[i][right] = num++;
+  for (let i = left; i <= right; i++) matrix[tops][i] = num++;
+  tops++;
+  for (let i = tops; i <= bottom; i++) matrix[i][right] = num++;
   right--;
   for (let i = right; i >= left; i--) matrix[bottom][i] = num++;
   bottom--;
-  for (let i = bottom; i >= top; i--) matrix[i][left] = num++;
+  for (let i = bottom; i >= tops; i--) matrix[i][left] = num++;
   left++;
 }
 

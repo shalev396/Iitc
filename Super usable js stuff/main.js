@@ -110,3 +110,21 @@ let person3 = { ...person1 };
 person3.x = 3;
 console.log(person1);
 console.log(person3);
+//16 check if Array
+let x = [];
+let y = {};
+console.log("x");
+console.log(x instanceof Array);
+console.log(Array.isArray(x));
+console.log("y");
+console.log(y instanceof Array);
+console.log(Array.isArray(y));
+//17
+function sum(...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+  return sum;
+}
+console.log(sum(1, 2, 3, 4, 5, 6, 7, 8, 9));

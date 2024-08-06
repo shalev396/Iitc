@@ -1,44 +1,64 @@
 "use strict";
-console.log("exercise 1");
-exercise1();
-console.log("exercise 2");
-exercise2();
-console.log("exercise 3");
-exercise3();
-console.log("exercise 4");
-exercise4();
-console.log("exercise 5");
-exercise5();
-console.log("exercise 6");
-exercise6();
-console.log("exercise 7");
-exercise7();
-console.log("exercise 8");
-exercise8();
-console.log("exercise 9");
-exercise9();
-console.log("exercise 10");
-exercise10();
-console.log("exercise 11");
-exercise11();
-console.log("exercise 12");
-exercise12();
-console.log("exercise 13");
-exercise13();
-console.log("exercise 14");
-exercise14();
-console.log("exercise 15");
-exercise15();
-console.log("exercise 16");
-exercise16();
-console.log("exercise 17");
-exercise17();
-console.log("exercise 18");
-exercise18();
-console.log("exercise 19");
-exercise19();
-console.log("exercise 20");
-exercise20();
+// console.log("exercise 1");
+// exercise1();
+// console.log("exercise 2");
+// exercise2();
+// console.log("exercise 3");
+// exercise3();
+// console.log("exercise 4");
+// exercise4();
+// console.log("exercise 5");
+// exercise5();
+// console.log("exercise 6");
+// exercise6();
+// console.log("exercise 7");
+// exercise7();
+// console.log("exercise 8");
+// exercise8();
+// console.log("exercise 9");
+// exercise9();
+// console.log("exercise 10");
+// exercise10();
+// console.log("exercise 11");
+// exercise11();
+// console.log("exercise 12");
+// exercise12();
+// console.log("exercise 13");
+// exercise13();
+// console.log("exercise 14");
+// exercise14();
+// console.log("exercise 15");
+// exercise15();
+// console.log("exercise 16");
+// exercise16();
+// console.log("exercise 17");
+// exercise17();
+// console.log("exercise 18");
+// exercise18();
+// console.log("exercise 19");
+// exercise19();
+// console.log("exercise 20");
+// exercise20();
+console.log("exercise 21");
+exercise21();
+console.log("exercise 22");
+exercise22();
+console.log("exercise 23");
+exercise23();
+console.log("exercise 24");
+exercise24();
+console.log("exercise 25");
+exercise25();
+console.log("exercise 26");
+exercise26();
+console.log("exercise 27");
+exercise27();
+console.log("exercise 28");
+exercise28();
+console.log("exercise 29");
+exercise29();
+console.log("exercise 30");
+exercise30();
 //1.
 function exercise1() {
   let str = "";
@@ -280,3 +300,18 @@ function exercise20() {
     console.log(str);
   }
 }
+function exercise21() {
+  const size = 4;
+  const rowArr = [];
+  const columArr = [];
+  for (let i = 0; i < size; i++) {
+    for (let i = 0; i < size; i++) {
+      if (i === 0 || i === size) {
+      }
+    }
+  }
+}
+// 1/2/3/4
+// 12/13/14/5
+// 11/16/15/6
+// 10/9/8/7
