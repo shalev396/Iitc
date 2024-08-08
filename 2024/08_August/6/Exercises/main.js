@@ -183,7 +183,7 @@ function updatePriceByName(products, productName, newPrice) {
   }
 }
 updatePriceByName(myProducts, "Phone", 550);
-console.log("Updated Products:", myProducts); //phone 4200>550
+// console.log("Updated Products:", myProducts); //phone 4200>550
 
 /* 😥 Task 12: Get Uppercase Strings 😥
 // TODO: Write a function to get an array of uppercase strings (You should return a new array)
@@ -221,7 +221,7 @@ function groupStringsBySpaces(strings) {
   return sortedBySpaces;
 }
 const groupedStrings_1 = groupStringsBySpaces(strings);
-console.log("Grouped Strings By Spaces:", groupedStrings_1); //{0=baba,1= [ba ba,ta ta]}
+// console.log("Grouped Strings By Spaces:", groupedStrings_1); //{0=baba,1= [ba ba,ta ta]}
 
 /* 🥵 Task 14: group strings by length 🥵
 //TODO: Write a function to group strings by length.
@@ -267,41 +267,35 @@ function capitalizeStrings(strings) {
 //Bonus
 function capitalizeStrings1(strings) {
   let capitalizedArray = [];
-  let temp;
-  let newtemp;
-  let found = false;
-  let pushed = false;
+  let spaces = [0];
+  let foundAll = false;
+  let pushAble = 0;
   for (let i = 0; i < strings.length; i++) {
-    pushed = false;
-    for (let j = 0; j < strings[i].length; j++) {
-      //   pushed = false;
-      found = false;
-      temp = strings[i][0].toUpperCase();
-      if (strings[i][j - 1] === " ") {
-        strings[i][j] = strings[i][j].toUpperCase();
-        console.log(strings[i][j]);
-
-        newtemp = strings[i][j].toUpperCase();
-        found = true;
+    foundAll = false;
+    pushAble = 0;
+    capitalizedArray = [];
+    for (let j = 0; !foundAll; j++) {
+      if (strings[i].indexOf(" ", j) !== -1) {
+        capitalizedArray.push(strings[i].indexOf(" ", j) + 1);
+        j = strings[i].indexOf(" ", j) + 1;
+        pushAble++;
+      } else {
+        foundAll = true;
       }
-      for (let k = 1; k < strings[i].length; k++) {
-        if (found && j == k) {
-          temp += newtemp;
-        } else {
-          temp += strings[i][k];
-        }
-      }
-      if (!pushed && found) {
-        capitalizedArray.push(temp);
-        pushed = true;
-      }
-      console.log(temp);
     }
-    if (!pushed) {
-      capitalizedArray.push(temp);
+    for (let k = 0; k < strings[i].length; k++) {
+      if (capitalizedArray.includes(k) && pushAble > 0) {
+        let charArray = strings[i].split("");
+        charArray[k] = strings[i][k].toUpperCase();
+        strings[i] = charArray.join("");
+        capitalizedArray.push(strings[i]);
+        pushAble--;
+      }
     }
   }
+  console.log(capitalizedArray);
+
   return capitalizedArray;
 }
-// const capitalizedStrings2 = capitalizeStrings1(strings);
-// console.log("Capitalized Strings1:", capitalizedStrings2);
+const capitalizedStrings2 = capitalizeStrings1(strings);
+console.log("Capitalized Strings1:", capitalizedStrings2);
