@@ -1,13 +1,24 @@
 //"use strict";
-//game.js
-import { GlobalResult } from "./server.js";
-console.log(GlobalResult);
-//
-// const getArrayEntry = async (filename) => { fetch (filename) then((response
-// ) => response.json) then(parser => parser.parse) then(result => result[0].data.entries[0].value) }
-// const getArrayFromJSFile = async 0 => { return await getArrayEntry(
-// "/assets/js/animalList.js") }
-//
+let GlobalResult = undefined;
+fetch("http://localhost:3000/array")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.text(); // Get the response as text
+  })
+  .then((text) => {
+    if (text) {
+      return JSON.parse(text); // Parse the text as JSON if it's not empty
+    } else {
+      throw new Error("Empty response");
+    }
+  })
+  .then((data) => {
+    console.log(data); // Use the array here
+  })
+  .catch((error) => console.error("Error fetching array:", error));
+
 //let grab =server.;
 let query1 = [{ Object: 10 }, { Object: 7 }, { Object: 3 }];
 //shows table

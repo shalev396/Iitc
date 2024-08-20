@@ -1,7 +1,7 @@
 const express = require("express");
 const sql = require("mssql");
 require("dotenv").config();
-let GlobalResult = undefined;
+let GlobalResult = [1];
 const app = express();
 const port = 3000;
 
@@ -38,7 +38,8 @@ app.get("/data", async (req, res) => {
     // Query the database
     const result = await sql.query("SELECT * FROM Items");
     GlobalResult = result;
-    export GlobalResult
+    res.json(GlobalResult);
+    //export GlobalResult
     // Send the results as JSON
     res.json(result.recordset);
   } catch (err) {
@@ -51,3 +52,22 @@ app.get("/data", async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+
+/////////////////////////////////
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
+app.get("/array", (req, res) => {
+  console.log("Sending array:", GlobalResult); // Log the array being sent
+  res.json(GlobalResult);
+});
+
+// app.listen(port, () => {
+//   console.log(`Server running at http://localhost:${port}`);
+// });

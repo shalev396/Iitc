@@ -9,7 +9,7 @@
   "dependencies": {
     "dotenv": "^16.3.1",
     "express": "^4.19.2",
-    "mssql": "^9.3.2"
+    "mssql": "^11.0.1"
   },
   "author": "Israel",
   "license": "ISC"
