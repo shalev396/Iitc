@@ -65,7 +65,7 @@ CREATE TABLE Subscription (
     Expiration DATE,
     FOREIGN KEY (CustID) REFERENCES Customers(CustID),
     FOREIGN KEY (Delivery) REFERENCES DeliveryFees(Delivery)
-);
+);--
 CREATE TABLE Discounts (
     CustType INT NOT NULL PRIMARY KEY, -- Customer type (1: Private, 2: Business)
     Discnt FLOAT
@@ -74,7 +74,7 @@ CREATE TABLE Users (
     UserName VARCHAR(255) NOT NULL PRIMARY KEY,
     [Profile] VARCHAR(255),
     FOREIGN KEY ([Profile]) REFERENCES Profiles([profile]) 
-);
+);--
 CREATE TABLE Profiles (
     [profile] VARCHAR(255) NOT NULL PRIMARY KEY, 
     act BIT -- Active status (1 = active, 0 = inactive)
@@ -115,7 +115,7 @@ CREATE TABLE Numbers (
     FOREIGN KEY (LastStock) REFERENCES StockOrder(OrderNo),
     FOREIGN KEY (LastReciept) REFERENCES Receipt(RecNo), 
     FOREIGN KEY (LastInvoice) REFERENCES Invoices(InvNo) 
-);
+);--
 
 -------------------------------------------inserts
 INSERT INTO Customers (CustID, CustType, CustStatus, FreezCode, OverCount, CustName, DelivAddrss, MailAddrss, CreditCard)
@@ -201,6 +201,20 @@ INSERT INTO Numbers (LastOrder, LastSubsc, LastStock, LastReciept, LastInvoice)
 VALUES
     (105, 105, 1005, 20005, 10005);
 ---------------------------------------------------delete
+DELETE from Customers;
+DELETE from ExOrders;
+DELETE from Invoices;
+DELETE from Receipt;
+DELETE from Accounting;
+DELETE from Subscription;
+DELETE from Discounts;
+DELETE from Users;
+DELETE from Profiles;
+DELETE from Items;
+DELETE from StockOrder;
+DELETE from DeliveryFees;
+DELETE FROM Numbers;
+
 SELECT * FROM Customers;
 SELECT * FROM ExOrders;
 SELECT * FROM Invoices;

@@ -15,10 +15,13 @@ from Items
 where (code=@VarCode) 
 END
 --task 2
-DECLARE @VarSortBy int =3 --1=Status,2=Date,3=OrderNo
-DECLARE @VarStatus varchar(255) ='open'
+DECLARE @VarSortBy int =1 --1=Status,2=Date,3=OrderNo
+
+DECLARE @VarStatus varchar(255) ='closed'
+
 DECLARE @VarDate1 date ='2024-08-01'
 DECLARE @VarDate2 date ='2024-08-03'
+
 DECLARE @VarOrderNo int =101
 IF @VarSortBy = 1
 BEGIN

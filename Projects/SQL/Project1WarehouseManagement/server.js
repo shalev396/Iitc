@@ -1,7 +1,7 @@
 const express = require("express");
 const sql = require("mssql");
 require("dotenv").config();
-
+let GlobalResult = undefined;
 const app = express();
 const port = 3000;
 
@@ -36,13 +36,14 @@ app.get("/data", async (req, res) => {
       });
 
     // Query the database
-    const result = await sql.query("SELECT * FROM Orders");
-
+    const result = await sql.query("SELECT * FROM Items");
+    GlobalResult = result;
+    export GlobalResult
     // Send the results as JSON
     res.json(result.recordset);
   } catch (err) {
     console.error("SQL error", err);
-    res.status(500).send("Server Error");
+    res.status(500).send("Server Error1");
   }
 });
 
