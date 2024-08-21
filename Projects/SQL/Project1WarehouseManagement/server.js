@@ -80,10 +80,10 @@ app.get("/data/query2", async (req, res) => {
     let OrderNo = 101; // OrderNo for filtering by specific order
     // Connect to the SQL Server and execute the query with parameters
     try {
-      await sql.connect(dbConfig); // Assuming you already have dbConfig set up
+      await sql.connect(dbConfig);
 
       const request = new sql.Request();
-      // Adding input parameters
+      // Adding input parameters (gpt fix)
       request.input("VarSortBy", sql.Int, SortBy);
       request.input("VarStatus", sql.VarChar(255), Status);
       request.input("VarDate1", sql.Date, Date1);
