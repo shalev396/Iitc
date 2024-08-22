@@ -131,6 +131,179 @@ app.get("/data/query2", async (req, res) => {
   }
 });
 
+// Route to get data query3
+app.get("/data/query3", async (req, res) => {
+  try {
+    sql
+      .connect(dbConfig)
+      .then(() => {
+        console.log("Connected successfully!");
+      })
+      .catch((err) => {
+        console.error("Connection failed:", err);
+      });
+    let result = null;
+    // Query(Stored Procedure) the database
+    let CustID = 1;
+    // Connect to the SQL Server and execute the query with parameters
+    try {
+      await sql.connect(dbConfig);
+
+      const request = new sql.Request();
+      // Adding input parameters (gpt fix)
+      request.input("VarCustID", sql.Int, CustID);
+
+      // Executing the stored procedure with parameters
+      result = await request.query(`
+    EXEC GetCustomerSubscriptions
+    @VarCustID = @VarCustID
+  `);
+
+      // Log the result (for debugging purposes)
+      console.log(result.recordset); // Output the results
+
+      // Assuming you want to return the result in the response
+      //res.json(result.recordset); // Send the result to the client
+    } catch (err) {
+      console.error("SQL error", err);
+      res.status(500).send("Server Error"); // Return a server error response
+    }
+
+    //used w3school+stack overflow +GPT(for small fix)
+    if (result.recordset.length > 0) {
+      // Convert data to HTML table
+      const tableHTML = createHTMLTable(result.recordset);
+      res.send(
+        `<html><head><title>Data</title></head><body>${tableHTML}</body></html>`
+      );
+    } else {
+      res.send(
+        "<html><head><title>Data</title></head><body><p>No data found.</p></body></html>"
+      );
+    }
+
+    // Send the results as JSON
+    //res.json(result.recordset);
+  } catch (err) {
+    console.error("SQL error", err);
+    res.status(500).send("Server Error");
+  }
+});
+// Route to get data query3
+app.get("/data/query4", async (req, res) => {
+  try {
+    sql
+      .connect(dbConfig)
+      .then(() => {
+        console.log("Connected successfully!");
+      })
+      .catch((err) => {
+        console.error("Connection failed:", err);
+      });
+    let result = null;
+    // Query(Stored Procedure) the database
+    let StartDate = "2024-08-22";
+    // Connect to the SQL Server and execute the query with parameters
+    try {
+      await sql.connect(dbConfig);
+
+      const request = new sql.Request();
+      // Adding input parameters (gpt fix)
+      request.input("VarDateStart", sql.Date, StartDate);
+
+      // Executing the stored procedure with parameters
+      result = await request.query(`
+    EXEC GetCreditandDebitByDate
+    @VarDateStart = @VarDateStart
+  `);
+
+      // Log the result (for debugging purposes)
+      console.log(result.recordset); // Output the results
+
+      // Assuming you want to return the result in the response
+      //res.json(result.recordset); // Send the result to the client
+    } catch (err) {
+      console.error("SQL error", err);
+      res.status(500).send("Server Error"); // Return a server error response
+    }
+
+    //used w3school+stack overflow +GPT(for small fix)
+    if (result.recordset.length > 0) {
+      // Convert data to HTML table
+      const tableHTML = createHTMLTable(result.recordset);
+      res.send(
+        `<html><head><title>Data</title></head><body>${tableHTML}</body></html>`
+      );
+    } else {
+      res.send(
+        "<html><head><title>Data</title></head><body><p>No data found.</p></body></html>"
+      );
+    }
+
+    // Send the results as JSON
+    //res.json(result.recordset);
+  } catch (err) {
+    console.error("SQL error", err);
+    res.status(500).send("Server Error");
+  }
+});
+
+// Route to get data query3
+app.get("/data/query5", async (req, res) => {
+  try {
+    sql
+      .connect(dbConfig)
+      .then(() => {
+        console.log("Connected successfully!");
+      })
+      .catch((err) => {
+        console.error("Connection failed:", err);
+      });
+    let result = null;
+    // Query(Stored Procedure) the database
+    // Connect to the SQL Server and execute the query with parameters
+    try {
+      await sql.connect(dbConfig);
+
+      const request = new sql.Request();
+      // Adding input parameters (gpt fix)
+
+      // Executing the stored procedure with parameters
+      result = await request.query(`
+    EXEC GetAllExOrderUnclamedAndUnsent
+  `);
+
+      // Log the result (for debugging purposes)
+      console.log(result.recordset); // Output the results
+
+      // Assuming you want to return the result in the response
+      //res.json(result.recordset); // Send the result to the client
+    } catch (err) {
+      console.error("SQL error", err);
+      res.status(500).send("Server Error"); // Return a server error response
+    }
+
+    //used w3school+stack overflow +GPT(for small fix)
+    if (result.recordset.length > 0) {
+      // Convert data to HTML table
+      const tableHTML = createHTMLTable(result.recordset);
+      res.send(
+        `<html><head><title>Data</title></head><body>${tableHTML}</body></html>`
+      );
+    } else {
+      res.send(
+        "<html><head><title>Data</title></head><body><p>No data found.</p></body></html>"
+      );
+    }
+
+    // Send the results as JSON
+    //res.json(result.recordset);
+  } catch (err) {
+    console.error("SQL error", err);
+    res.status(500).send("Server Error");
+  }
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
