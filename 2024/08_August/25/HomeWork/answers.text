@@ -1,0 +1,13 @@
+1:
+A.Category: IT - Information Technology -  It involves information storage, retrieval, and updating, which are central to IT systems.
+B.Category: IT - Information Technology -  It involves information storage, retrieval, and updating, which are central to IT systems.
+C.Category: Real-time/Embedded - ATM systems must respond instantly to user actions
+D.Category: Command & Control - Control system for managing operational control within an organization.
+2:
+A.
+B.Verifies the interaction between modules like book inventory and payment processing.
+C.Ensures the entire library system, including issuing, returning, and tracking books, works together.
+D.Involves validating the system with actual users (librarians and members) to ensure it meets the requirements.
+3:
+A.Returning books after the deadline should trigger overdue fees.
+B:Other areas such as renewing a book or issuing a new book should work properly even after the fix.
