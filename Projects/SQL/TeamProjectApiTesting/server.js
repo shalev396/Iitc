@@ -15,14 +15,27 @@ app.get("/task1", async (req, res) => {
       `https://fakestoreapi.com/products/${prodId}`
     );
     console.log(response);
-    //shows only the required values
-    res.json({
-      name: response.data.title,
-      description: response.data.description,
-      price: response.data.price,
-      category: response.data.category,
-      image: response.data.image,
-    });
+    //checks if has rating
+    if (response.data.rating) {
+      res.json({
+        //shows only the required values
+        name: response.data.title,
+        description: response.data.description,
+        price: response.data.price,
+        category: response.data.category,
+        image: response.data.image,
+        rating: response.data.rating,
+      });
+    } else {
+      res.json({
+        //shows only the required values
+        name: response.data.title,
+        description: response.data.description,
+        price: response.data.price,
+        category: response.data.category,
+        image: response.data.image,
+      });
+    }
   } catch (err) {
     console.error("SQL error", err);
     res.status(500).send("Server Error");
