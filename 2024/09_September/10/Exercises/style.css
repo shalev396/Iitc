@@ -1,0 +1,80 @@
+body {
+  /* margin: 0; */
+  /* padding: 0px; */
+  background-color: rgb(255, 255, 255);
+  text-align: left;
+}
+div {
+}
+.main-box {
+  background-color: yellow;
+  border: 1px solid blue;
+  padding: 8px;
+  color: red;
+  margin-bottom: 8px;
+}
+.main-box p span {
+  color: black;
+}
+.selected {
+  background-color: gray;
+  color: white;
+  border-radius: 3px;
+}
+p {
+  padding: 8px;
+}
+.ball {
+  margin-right: 4px;
+  display: inline-block;
+  border-radius: 50%;
+}
+.ball-1 {
+  background-color: red;
+  width: 50px;
+  height: 50px;
+}
+.ball-2 {
+  background-color: blue;
+  width: 50px;
+  height: 50px;
+}
+.ball-3 {
+  background-color: green;
+  width: 50px;
+  height: 50px;
+}
+.inner-box {
+  width: 75%;
+  height: 150px;
+  background-color: red;
+  margin: auto;
+}
+.item {
+  background-color: black;
+  color: white;
+  width: fit-content;
+  padding: 4px;
+}
+.item-2 {
+  margin-left: auto;
+}
+.item-3 {
+  margin-inline: auto;
+  border-radius: 50%;
+}
+.btn {
+  background-color: purple;
+  border: none;
+  color: white;
+  border-radius: 2px;
+  padding-inline: 18px;
+  padding-block: 6px;
+  letter-spacing: 1px;
+}
+.btn.btn-join {
+  border-radius: 100px;
+}
+.btn.btn-danger {
+  background-color: red;
+}
