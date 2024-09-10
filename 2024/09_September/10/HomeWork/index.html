@@ -3,39 +3,58 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Web Layout</title>
+    <title>CSS Positioning Assignment</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- Section 1: Text and Box -->
-    <div class="main-box">
-      <p>1st Lorem ipsum dolor sit amet consectetur</p>
-      <p>2nd Lorem ipsum dolor <span>BLACK</span> sit amet consectetur</p>
-      <p class="selected">3rd Lorem ipsum dolor sit amet consectetur</p>
+    <!-- Header -->
+    <header class="header">
+      <h1>Website Header</h1>
+    </header>
+
+    <!--mid -->
+    <div class="container">
+      <!-- Sidebar-->
+      <aside class="sidebar">
+        <img src="https://via.placeholder.com/150" alt="Sidebar Image" />
+        <p>Sidebar content goes here.</p>
+      </aside>
+
+      <!-- Main -->
+      <main class="main-content">
+        <h2>Main Content Area</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+          in justo quis nunc tincidunt malesuada. Nulla facilisi. In ac libero
+          sit amet dui sodales laoreet. Fusce eget erat in tortor elementum
+          fringilla. Nulla ac dictum ipsum.
+        </p>
+        <p>
+          Praesent id sapien eget augue pharetra feugiat. Curabitur convallis
+          velit ac purus condimentum auctor. Etiam a purus augue. Curabitur
+          venenatis nisl at facilisis vehicula. Integer scelerisque diam et
+          risus faucibus pharetra.
+        </p>
+        <p>
+          Donec pulvinar justo id elit sagittis, sed sodales neque ullamcorper.
+          Phasellus maximus faucibus sem. Proin ut sapien euismod, dapibus
+          tortor vel, egestas ante. Sed et quam ultricies, auctor metus non,
+          commodo felis. Duis varius vel turpis ac vehicula.
+        </p>
+        <p>
+          Vivamus maximus, justo a ullamcorper iaculis, urna mauris interdum
+          justo, sit amet aliquam risus orci vel sapien. Vestibulum molestie
+          enim vitae lacus lacinia, sit amet porta lorem laoreet.
+        </p>
+      </main>
     </div>
 
-    <!-- Section 2: Colored Circles -->
-    <div class="main-box">
-      <div class="ball ball-1"></div>
-      <div class="ball ball-2"></div>
-      <div class="ball ball-3"></div>
-    </div>
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Website Footer - Fixed at Bottom</p>
+    </footer>
 
-    <!-- Section 3: Red Box with Floating Text -->
-    <div class="main-box">
-      <div class="inner-box">
-        <div class="item item-1">left</div>
-        <div class="item item-2">right</div>
-        <div class="item item-3">middle</div>
-      </div>
-    </div>
-
-    <!-- Section 4: Buttons -->
-    <div>
-      <button class="btn explore">EXPLORE</button>
-      <button class="btn btn-join">JOIN</button>
-      <button class="btn btn-danger">DELETE</button>
-    </div>
+    <!-- Floating Button -->
+    <button class="floating-button">Click Me</button>
   </body>
-  <style></style>
 </html>

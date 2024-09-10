@@ -1,80 +1,67 @@
+* {
+  box-sizing: border-box;
+}
 body {
-  /* margin: 0; */
-  /* padding: 0px; */
-  background-color: rgb(255, 255, 255);
-  text-align: left;
+  margin: 0;
+  padding: 0;
 }
-div {
-}
-.main-box {
-  background-color: yellow;
-  border: 1px solid blue;
-  padding: 8px;
-  color: red;
-  margin-bottom: 8px;
-}
-.main-box p span {
-  color: black;
-}
-.selected {
-  background-color: gray;
+
+/* Header*/
+.header {
+  position: sticky;
+  top: 0;
+  background-color: #4caf50;
   color: white;
-  border-radius: 3px;
+  padding: 10px 20px;
+  z-index: 1;
 }
-p {
-  padding: 8px;
+
+/* Sidebar*/
+.sidebar {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  width: 200px;
+  background-color: #f4f4f4;
+  padding: 10px;
 }
-.ball {
-  margin-right: 4px;
-  display: inline-block;
-  border-radius: 50%;
+
+.sidebar img {
+  width: 100%;
+  display: block;
+  margin-bottom: 10px;
 }
-.ball-1 {
-  background-color: red;
-  width: 50px;
-  height: 50px;
+.main-content {
+  position: relative;
+  margin-left: 220px; /* To make room for the sidebar */
+  padding: 20px;
+  background-color: #ffffff;
+  height: 1000px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-.ball-2 {
-  background-color: blue;
-  width: 50px;
-  height: 50px;
-}
-.ball-3 {
-  background-color: green;
-  width: 50px;
-  height: 50px;
-}
-.inner-box {
-  width: 75%;
-  height: 150px;
-  background-color: red;
-  margin: auto;
-}
-.item {
-  background-color: black;
+
+/* Footer*/
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
   color: white;
-  width: fit-content;
-  padding: 4px;
+  text-align: center;
+  padding: 10px;
 }
-.item-2 {
-  margin-left: auto;
-}
-.item-3 {
-  margin-inline: auto;
-  border-radius: 50%;
-}
-.btn {
-  background-color: purple;
+
+/* Floating Button */
+.floating-button {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  padding: 15px 25px;
+  background-color: #007bff;
+  color: white;
   border: none;
-  color: white;
-  border-radius: 2px;
-  padding-inline: 18px;
-  padding-block: 6px;
-  letter-spacing: 1px;
-}
-.btn.btn-join {
-  border-radius: 100px;
-}
-.btn.btn-danger {
-  background-color: red;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
 }
