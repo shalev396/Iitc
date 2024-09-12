@@ -1,5 +1,5 @@
 /*styles from challenge*/
-.root {
+:root {
   /*layout*/
   --Mobile: 375px;
   --Desktop: 1440px;
@@ -18,20 +18,34 @@
   --SlightlyTransparentWhite: hsla(0, 0%, 100%, 0.75);
   /*stat headings*/
   --SlightlyTransparentWhite: hsla(0, 0%, 100%, 0.6);
-  /*Typography*/
-  /*Body Copy*/
+
   --FontSize: 15px;
-  /*Font*/
-  --FontFamily1: Inter;
-  --Weights1: 400, 700;
-  /*Font*/
-  --FontFamily2: Lexend Deca;
-  --Weights2: 400, 700;
 }
-.attribution {
-  font-size: 11px;
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.attribution a {
-  color: hsl(228, 45%, 44%);
+body {
+  background-color: var(--VeryDarkBlue);
+  display: flex;
+  justify-content: center;
+}
+.highlight {
+  color: var(--SoftViolet);
+}
+.image {
+}
+.container {
+  border-radius: 20px;
+  margin-top: 60px;
+  background-color: var(--DarkDesaturatedBlue);
+  overflow: hidden;
+}
+.content {
+  color: var(--White);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
