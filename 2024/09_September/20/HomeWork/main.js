@@ -17,73 +17,43 @@ let cart = [
   { id: 9, name: "USB Cable", price: 10, amount: 2 },
   { id: 10, name: "External Hard Drive", price: 120, amount: 3 },
 ];
-
+const GLOBAL_MODE = 2;
 const sortDropdown = document.getElementById("sortDropdown");
 const tableCart = document.getElementById("tableCart");
 const TotalP = document.getElementById("TotalP");
 const tableCatalog = document.getElementById("tableCatalog");
 tableCartContractor();
 tableCatalogContractor();
-
 sortDropdown.onchange = filter;
-
-function filter() {
-  let value = sortDropdown.value;
-  let temp = "";
-  let tempCart = getCart();
-  switch (value) {
-    case `Name`:
-      for (let i = 0; i < tempCart.length; i++) {
-        for (let j = 0; j < tempCart.length; j++) {
-          if (tempCart[i].name.localeCompare(tempCart[j].name) > 0) {
-            let temp = tempCart[i];
-            tempCart[i] = tempCart[j];
-            tempCart[j] = temp;
-          }
-        }
-      }
-      setCart(tempCart);
-      refCart();
-      break;
-    case `Price`:
-      for (let i = 0; i < tempCart.length; i++) {
-        for (let j = 0; j < tempCart.length; j++) {
-          if (tempCart[i].price < tempCart[j].price) {
-            temp = tempCart[i];
-            tempCart[i] = tempCart[j];
-            tempCart[j] = temp;
-          }
-        }
-      }
-      setCart(tempCart);
-      refCart();
-      break;
-    case `Total`:
-      for (let i = 0; i < tempCart.length; i++) {
-        for (let j = 0; j < tempCart.length; j++) {
-          if (
-            tempCart[i].price * tempCart[i].amount <
-            tempCart[j].price * tempCart[j].amount
-          ) {
-            temp = tempCart[i];
-            tempCart[i] = tempCart[j];
-            tempCart[j] = temp;
-          }
-        }
-      }
-      setCart(tempCart);
-      refCart();
-      break;
-  }
-}
 
 //function
 //cart
 function getCart() {
-  return [...cart];
+  if (GLOBAL_MODE === 1) {
+    return [...cart];
+  } else if (GLOBAL_MODE === 2) {
+    let jsonCart = localStorage.getItem("cart");
+    // console.log(jsonCart);
+    // console.log(JSON.parse(jsonCart));
+    if (jsonCart) {
+      return JSON.parse(jsonCart);
+    } else {
+      localStorage.setItem("cart", JSON.stringify([]));
+      return [];
+    }
+  } else if (GLOBAL_MODE === 3) {
+  }
 }
 function setCart(newCart) {
-  cart = newCart;
+  if (GLOBAL_MODE === 1) {
+    cart = newCart;
+  } else if (GLOBAL_MODE === 2) {
+    let jsonCart = JSON.stringify(newCart);
+    console.log(jsonCart);
+
+    localStorage.setItem("cart", jsonCart);
+  } else if (GLOBAL_MODE === 3) {
+  }
 }
 
 function addProduct(product) {
@@ -247,6 +217,56 @@ function hasProduct(product) {
     if (tempCart[i].id === product.id) return true;
 
   return false;
+}
+//filter
+function filter() {
+  let value = sortDropdown.value;
+  let temp = "";
+  let tempCart = getCart();
+  switch (value) {
+    case `Name`:
+      for (let i = 0; i < tempCart.length; i++) {
+        for (let j = 0; j < tempCart.length; j++) {
+          if (tempCart[i].name.localeCompare(tempCart[j].name) > 0) {
+            let temp = tempCart[i];
+            tempCart[i] = tempCart[j];
+            tempCart[j] = temp;
+          }
+        }
+      }
+      setCart(tempCart);
+      refCart();
+      break;
+    case `Price`:
+      for (let i = 0; i < tempCart.length; i++) {
+        for (let j = 0; j < tempCart.length; j++) {
+          if (tempCart[i].price < tempCart[j].price) {
+            temp = tempCart[i];
+            tempCart[i] = tempCart[j];
+            tempCart[j] = temp;
+          }
+        }
+      }
+      setCart(tempCart);
+      refCart();
+      break;
+    case `Total`:
+      for (let i = 0; i < tempCart.length; i++) {
+        for (let j = 0; j < tempCart.length; j++) {
+          if (
+            tempCart[i].price * tempCart[i].amount <
+            tempCart[j].price * tempCart[j].amount
+          ) {
+            temp = tempCart[i];
+            tempCart[i] = tempCart[j];
+            tempCart[j] = temp;
+          }
+        }
+      }
+      setCart(tempCart);
+      refCart();
+      break;
+  }
 }
 //not in use
 function tableCatalogDestructor() {
