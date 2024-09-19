@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <h1>Product Table</h1>
+    </header>
+    <main>
+      <div class="cart">
+        <h1>your cart</h1>
+        <div class="sortDropdown">
+          <select>
+            <option>Name</option>
+            <option>Price</option>
+            <option>Total</option>
+          </select>
+        </div>
+        <table id="tableCart">
+          <tr>
+            <th>Product Name</th>
+            <th>Product Price</th>
+            <th>Amount</th>
+            <th>Total</th>
+            <th>modify</th>
+            <!--remove button and +- control for the amount-->
+          </tr>
+        </table>
+        <div>
+          <p>Overall Total:</p>
+          <p id="TotalP"></p>
+        </div>
+      </div>
+      <div class="catalog">
+        <h1>your cart</h1>
+        <table id="tableCatalog">
+          <tr>
+            <th>Product Name</th>
+            <th>Product Price</th>
+            <th>modify</th>
+            <!--add button-->
+          </tr>
+        </table>
+      </div>
+    </main>
+    <script src="./main.js"></script>
+  </body>
+</html>
