@@ -1,4 +1,10 @@
 "use strict";
+//TODO
+//The table should have a footer or a separate row at the bottom showing the total price of all products in the table.
+//Highlight the total price section to make it easily noticeable.
+//Include comments to explain your code where necessary.
+//bonus add firebase.
+
 // List of available products with names and prices
 let products = [
   { id: 1, name: "Laptop", price: 1000 },
@@ -12,12 +18,8 @@ let products = [
   { id: 9, name: "USB Cable", price: 10 },
   { id: 10, name: "External Hard Drive", price: 120 },
 ];
-let cart = [
-  { id: 8, name: "Webcam", price: 80, amount: 1 },
-  { id: 9, name: "USB Cable", price: 10, amount: 2 },
-  { id: 10, name: "External Hard Drive", price: 120, amount: 3 },
-];
-const GLOBAL_MODE = 2;
+let cart = [];
+const GLOBAL_MODE = 2; //saving at 1=variable, 2=localStorage
 const sortDropdown = document.getElementById("sortDropdown");
 const tableCart = document.getElementById("tableCart");
 const TotalP = document.getElementById("TotalP");
@@ -33,8 +35,6 @@ function getCart() {
     return [...cart];
   } else if (GLOBAL_MODE === 2) {
     let jsonCart = localStorage.getItem("cart");
-    // console.log(jsonCart);
-    // console.log(JSON.parse(jsonCart));
     if (jsonCart) {
       return JSON.parse(jsonCart);
     } else {
@@ -44,12 +44,12 @@ function getCart() {
   } else if (GLOBAL_MODE === 3) {
   }
 }
+
 function setCart(newCart) {
   if (GLOBAL_MODE === 1) {
     cart = newCart;
   } else if (GLOBAL_MODE === 2) {
     let jsonCart = JSON.stringify(newCart);
-    console.log(jsonCart);
 
     localStorage.setItem("cart", jsonCart);
   } else if (GLOBAL_MODE === 3) {
@@ -64,8 +64,9 @@ function addProduct(product) {
 }
 function removeProduct(product) {
   let tempCart = getCart();
-  if (tempCart.indexOf(product) !== -1) {
-    tempCart.splice(tempCart.indexOf(product), 1);
+
+  if (findIndex(tempCart, product) !== -1) {
+    tempCart.splice(findIndex(tempCart, product), 1);
     setCart(tempCart);
   }
   return tempCart;
@@ -73,13 +74,13 @@ function removeProduct(product) {
 
 function updateProductInCart(product, op) {
   let tempCart = getCart();
-  if (tempCart.indexOf(product) !== -1) {
+  if (findIndex(tempCart, product) !== -1) {
     if (op === "+") {
-      tempCart[tempCart.indexOf(product)].amount++;
+      tempCart[findIndex(tempCart, product)].amount++;
       setCart(tempCart);
     } else if (op === "-") {
-      tempCart[tempCart.indexOf(product)].amount--;
-      if (tempCart[tempCart.indexOf(product)].amount === 0) {
+      tempCart[findIndex(tempCart, product)].amount--;
+      if (tempCart[findIndex(tempCart, product)].amount === 0) {
         setCart(removeProduct(product));
       }
     }
@@ -267,6 +268,13 @@ function filter() {
       refCart();
       break;
   }
+}
+//find index // indexof is not working expectedly because on every "read" from localStorage i change the ref of the array
+function findIndex(tempCart, product) {
+  for (let i = 0; i < tempCart.length; i++)
+    if (tempCart[i].id === product.id) return i;
+
+  return -1;
 }
 //not in use
 function tableCatalogDestructor() {
