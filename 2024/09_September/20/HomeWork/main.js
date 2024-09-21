@@ -1,11 +1,5 @@
 "use strict";
-//TODO
-//The table should have a footer or a separate row at the bottom showing the total price of all products in the table.
-//Highlight the total price section to make it easily noticeable.
-//Include comments to explain your code where necessary.
-//bonus add firebase.
-
-// List of available products with names and prices
+// catalog on variable mode
 let products = [
   { id: 1, name: "Laptop", price: 1000 },
   { id: 2, name: "Smartphone", price: 600 },
@@ -18,18 +12,23 @@ let products = [
   { id: 9, name: "USB Cable", price: 10 },
   { id: 10, name: "External Hard Drive", price: 120 },
 ];
+//cart on variable mode
 let cart = [];
+
+//switching between saving modes
 const GLOBAL_MODE = 2; //saving at 1=variable, 2=localStorage
+//set element references
 const sortDropdown = document.getElementById("sortDropdown");
 const tableCart = document.getElementById("tableCart");
-const TotalP = document.getElementById("TotalP");
 const tableCatalog = document.getElementById("tableCatalog");
+let AllTotalCell = ""; //this element is defined in the function scope
+sortDropdown.onchange = filter; //activate filter() when dropdown option change
+//set tables
 tableCartContractor();
 tableCatalogContractor();
-sortDropdown.onchange = filter;
 
-//function
-//cart
+//functions
+//CRUD cart
 function getCart() {
   if (GLOBAL_MODE === 1) {
     return [...cart];
@@ -41,7 +40,6 @@ function getCart() {
       localStorage.setItem("cart", JSON.stringify([]));
       return [];
     }
-  } else if (GLOBAL_MODE === 3) {
   }
 }
 
@@ -52,7 +50,6 @@ function setCart(newCart) {
     let jsonCart = JSON.stringify(newCart);
 
     localStorage.setItem("cart", jsonCart);
-  } else if (GLOBAL_MODE === 3) {
   }
 }
 
@@ -82,11 +79,13 @@ function updateProductInCart(product, op) {
       tempCart[findIndex(tempCart, product)].amount--;
       if (tempCart[findIndex(tempCart, product)].amount === 0) {
         setCart(removeProduct(product));
+      } else {
+        setCart(tempCart);
       }
     }
   }
 }
-//table cart
+//CRUD table cart
 function tableCartContractor() {
   let tempCart = getCart();
 
@@ -138,6 +137,14 @@ function tableCartContractor() {
 
     table.appendChild(row);
   }
+  const row = document.createElement("tr");
+  AllTotalCell = document.createElement("td");
+  AllTotalCell.id = "TotalP";
+  AllTotalCell.colSpan = "5";
+
+  row.appendChild(AllTotalCell);
+  table.appendChild(row);
+
   updateSum();
 }
 function tableCartDestructor() {
@@ -165,16 +172,22 @@ function updateSum() {
   for (let i = 0; i < tempCart.length; i++) {
     sum += tempCart[i].amount * tempCart[i].price;
   }
-  TotalP.textContent = sum;
+  AllTotalCell.textContent = `Overall Total: ${sum}`;
 }
-//catalog
+//CRUD catalog //no d
 function getProducts() {
   return [...products];
 }
 function setProducts(newProducts) {
   products = newProducts;
 }
-//table catalog
+//not in used
+function refCatalog() {
+  //   window.location.reload();
+  tableCatalogDestructor();
+  tableCatalogContractor();
+}
+//CRUD table catalog
 function tableCatalogContractor() {
   let tempCart = getCart();
   let tempProducts = getProducts();
@@ -211,6 +224,21 @@ function tableCatalogContractor() {
     table.appendChild(row);
   }
   updateSum();
+}
+//not in use
+function tableCatalogDestructor() {
+  const table = document.getElementById("tableCart");
+  table.innerHTML = `
+        <tbody>
+          <tr>
+            <th>Product Name</th>
+            <th>Product Price</th>
+            <th>Amount</th>
+            <th>Total</th>
+            <th>modify</th>
+          </tr>
+        </tbody>
+      `;
 }
 function hasProduct(product) {
   let tempCart = getCart();
@@ -275,24 +303,4 @@ function findIndex(tempCart, product) {
     if (tempCart[i].id === product.id) return i;
 
   return -1;
-}
-//not in use
-function tableCatalogDestructor() {
-  const table = document.getElementById("tableCart");
-  table.innerHTML = `
-        <tbody>
-          <tr>
-            <th>Product Name</th>
-            <th>Product Price</th>
-            <th>Amount</th>
-            <th>Total</th>
-            <th>modify</th>
-          </tr>
-        </tbody>
-      `;
-}
-function refCatalog() {
-  //   window.location.reload();
-  tableCatalogDestructor();
-  tableCatalogContractor();
 }

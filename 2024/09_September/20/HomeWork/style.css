@@ -11,8 +11,13 @@
   --font-size: 16px;
   --padding: 5px;
 }
+@font-face {
+  font-family: Nunito Sans;
+  src: url("./assets/Nunito_Sans/NunitoSans-VariableFont_YTLC\,opsz\,wdth\,wght.ttf");
+}
 
 * {
+  font-family: Nunito Sans;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -72,23 +77,6 @@ th {
   background-color: #f2f2f2;
   color: #333;
 }
-.overall {
-  display: flex;
+#TotalP {
+  font-weight: bold;
 }
-/* .cart table {
-    width: 40%;
-    margin: 0 auto;
-    border-collapse: collapse;
-    margin-top: 20px;
-    box-shadow: var(--box-shadow);
-  }
-  div.cart th,
-  td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-  }
-  div.cart th {
-    background-color: #f2f2f2;
-    color: #333;
-  } */
