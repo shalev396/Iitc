@@ -12,7 +12,7 @@ let products = [
   { id: 9, name: "USB Cable", price: 10 },
   { id: 10, name: "External Hard Drive", price: 120 },
 ];
-//cart on variable mode
+//cart on localStorage mode
 let cart = [];
 
 //switching between saving modes
