@@ -22,7 +22,7 @@ const addEditBox = document.getElementById("addEditEmploy");
 const sortDropdown = document.getElementById("sortDropdown");
 const filterDropdown = document.getElementById("filterDropdown");
 //checks if has employs
-if (!employs) {
+if (!employs || employs.length === 0) {
   service.createEmploys();
   console.log("new");
 }
@@ -71,6 +71,8 @@ refEmploys();
 
 //render table
 function tableEmploysContractor() {
+  console.log(employs);
+
   let tempEmploys = "";
   //if all or filtered are shown
   if (controller.getViewMode() === "all") {
@@ -78,6 +80,7 @@ function tableEmploysContractor() {
   } else if (controller.getViewMode() === `filtered`) {
     tempEmploys = utils.getFromStorage(filteredEmploysKey);
   }
+  utils.saveToStorage(filteredEmploysKey, undefined);
 
   const table = tableEmploys;
   for (let i = 0; i < tempEmploys.length; i++) {
@@ -130,6 +133,15 @@ function tableEmploysContractor() {
     modifyRemove.textContent = "Remove";
     modifyRemove.addEventListener("click", function () {
       service.removeEmploy(tempEmploys[i]);
+      addEditBox.style.display = "none";
+      newFirstName.value = "";
+      newLastName.value = "";
+      newAge.value = "";
+      newDate.value = "";
+      newDep.value = "";
+      newSalary.value = "";
+      addEditH1.style.display = "none";
+      addEditBox.style.display = "none";
       refEmploys();
     });
     modify.appendChild(modifyEdit);
