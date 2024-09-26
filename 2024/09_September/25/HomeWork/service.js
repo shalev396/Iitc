@@ -73,7 +73,6 @@ function createEmploys() {
 function addEmploy(employ) {
   let tempEmploys = utils.getFromStorage(employsKey);
   tempEmploys.push(employ);
-  console.log("pushed");
 
   utils.saveToStorage(employsKey, tempEmploys);
 }
