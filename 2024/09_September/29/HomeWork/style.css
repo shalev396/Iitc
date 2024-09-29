@@ -22,9 +22,7 @@
   margin: 0;
   padding: 0;
 }
-html {
-  width: 100%;
-}
+
 body {
   font-size: var(--font-size);
   height: 100%;
@@ -81,8 +79,4 @@ td {
 th {
   background-color: #f2f2f2;
   color: #333;
-}
-
-th.number {
-  width: 2rem;
 }
