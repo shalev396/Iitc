@@ -580,6 +580,341 @@ function solution50() {
   log = newArray;
   return JSON.stringify(log);
 }
+function solution51() {
+  let log = "";
+
+  const array = ["ש", "ל", "ו", "ם"];
+
+  array.forEach(function (item) {
+    log += item;
+  });
+  return log;
+}
+function solution52() {
+  let log = "";
+
+  const array = [1, 2, 3, 4, 5];
+
+  const newArray = array.map(function (item) {
+    return item + 10;
+  });
+  log = newArray;
+
+  return log;
+}
+function solution53() {
+  let log = "";
+
+  const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+  const newArray = array.filter(function (item) {
+    return item % 3 === 0;
+  });
+  log = newArray;
+
+  return log;
+}
+function solution54() {
+  let log = "";
+
+  const array = ["קצר", "בינוני", "הכי ארוך", "ארוך יותר"];
+
+  const newArray = array.reduce(function (a, b) {
+    if (a.length > b.length) return a;
+    return b;
+  });
+  log = newArray;
+
+  return log;
+}
+function solution55() {
+  let log = "";
+
+  const array = [1, 3, 5, 7, 9];
+
+  log = array.some(function (val) {
+    return val % 2 === 0;
+  });
+  return log;
+}
+function solution56() {
+  let log = "";
+
+  const array = ["תפוח", "תפ", "תפוז"];
+
+  log = array.every(function (str) {
+    return str[0] === `ת` && str[1] === `פ`;
+  });
+  return log;
+}
+function solution57() {
+  let log = "";
+
+  const array = [
+    { id: 1, completed: false },
+    { id: 2, completed: true },
+  ];
+
+  log = array.find(function (val) {
+    return val.completed === true;
+  });
+  return JSON.stringify(log);
+}
+function solution58() {
+  let log = "";
+
+  const array = ["תפוח", "בננה", "דובדבן"];
+
+  log = array.findIndex(function (val) {
+    return val === `בננה`;
+  });
+  return log;
+}
+function solution59() {
+  let log = "";
+
+  const array = [
+    { name: "יוחנן", age: 25 },
+    { name: "יעל", age: 30 },
+    { name: "בועז", age: 20 },
+  ];
+
+  const newArray = array.sort(function (a, b) {
+    return a.name.localeCompare(b.name);
+  });
+  log = newArray;
+  return JSON.stringify(log);
+}
+function solution60() {
+  let log = "";
+
+  const array = [1, [2, 3], [4, [5, 6]]];
+
+  const newArray = array.flat(2);
+  log = newArray;
+  return JSON.stringify(log);
+}
+function solution61() {
+  let log = "";
+
+  const array = [`ש`, `ל`, `ו`, `ם`];
+
+  array.forEach(function (item) {
+    log += item;
+  });
+
+  return log;
+}
+function solution62() {
+  let log = "";
+
+  const array = ["תפוח", "בננה", "דובדבן"];
+
+  const newArray = array.map(function (item) {
+    return item[0];
+  });
+  log = newArray;
+
+  return log;
+}
+function solution63() {
+  let log = "";
+
+  const array = ["א", "אב", "אבג", "אבגד"];
+
+  const newArray = array.filter(function (item) {
+    return item.length > 3;
+  });
+  log = newArray;
+
+  return JSON.stringify(log);
+}
+function solution64() {
+  let log = "";
+
+  const array = ["תפוח", "בננה", "דובדבן"];
+
+  const newArray = array.reduce(function (prev, cur) {
+    return prev.toString().length + cur.toString().length;
+  });
+  log = newArray;
+
+  return "TODO";
+}
+function solution65() {
+  let log = "";
+
+  const array = ["שלום", "עולם", `ג'אווהסקריפט`];
+
+  const newArray = array.some(function (item) {
+    return item.length > 10;
+  });
+  log = newArray;
+
+  return log;
+}
+function solution66() {
+  let log = "";
+
+  const array = [10, 20, 30, 40, 50];
+
+  log = array.every(function (item) {
+    return item > 5;
+  });
+
+  return log;
+}
+function solution67() {
+  let log = "";
+
+  const array = ["ספר", "דלת", "חלון"];
+
+  log = array.find(function (item) {
+    return item.includes(`ון`);
+  });
+
+  return log;
+}
+function solution68() {
+  let log = "";
+
+  const array = [5, 10, 15, 20];
+
+  log = array.findIndex(function (item) {
+    return item > 10;
+  });
+
+  return log;
+}
+function solution69() {
+  let log = "";
+
+  const array = ["אאא", "בב", "ג"];
+
+  log = array.sort(function (a, b) {
+    return a.length - b.length;
+  });
+
+  return log;
+}
+function solution70() {
+  let log = "";
+
+  const array = [1, [2, [3, [4]]]];
+
+  const newArray = array.flat(3);
+  log = newArray;
+  return JSON.stringify(log);
+}
+function solution71() {
+  let log = "";
+
+  const array = [1, 4, 9, 16];
+  const newArray = [];
+  array.forEach(function (val) {
+    newArray.push(Math.sqrt(val));
+  });
+  log = newArray;
+  return JSON.stringify(log);
+}
+function solution72() {
+  let log = "";
+
+  const array = ["א", "ב", "ג"];
+  const newArray = [];
+  array.map(function (val) {
+    newArray.push(val + val);
+  });
+  log = newArray;
+  return JSON.stringify(log);
+}
+function solution73() {
+  let log = "";
+
+  const array = [5, 10, 15, 20, 25];
+  const newArray = array.filter(function (val) {
+    return val < 20 && val > 10;
+  });
+  log = newArray;
+  return JSON.stringify(log);
+}
+function solution74() {
+  let log = "";
+
+  const array = [{ א: 1 }, { ב: 2 }, { ג: 3 }];
+  const newObj = { a: 1 };
+  const newArray = array.reduce(function (val) {
+    return newObj[val];
+    // get keys
+  });
+  log = newArray;
+  return "TODO";
+}
+function solution75() {
+  let log = "";
+
+  const array = [{ x: 1 }, { y: 2 }, { z: 3 }];
+
+  log = array.some(function (val) {
+    return val.y;
+  });
+
+  return log;
+}
+function solution76() {
+  let log = "";
+
+  const array = ["א1", "ב2", "ג3"];
+
+  log = array.every(function (val) {
+    return val;
+    // ascii
+  });
+
+  return "TODO";
+}
+function solution77() {
+  let log = "";
+
+  const array = [{ price: 60 }, { price: 40 }, { price: 70 }];
+
+  log = array.find(function (val) {
+    return val.price < 50;
+  });
+
+  return JSON.stringify(log);
+}
+function solution78() {
+  let log = "";
+
+  const array = [1, "", true, 0, null, "שלום"];
+
+  log = array.findIndex(function (val) {
+    return !val;
+  });
+
+  return log;
+}
+function solution79() {
+  let log = "";
+
+  const array = [3.14, 2.71, 1.41, 1.73];
+
+  const newArray = array.sort(function (a, b) {
+    return a - b;
+  });
+  log = newArray;
+  return log;
+}
+function solution80() {
+  let log = "";
+
+  const array = ["א", ["ב", ["ג"]]];
+
+  const newArray = array.flat(Number.MAX_VALUE);
+  log = newArray;
+  return JSON.stringify(log);
+}
 //exports
 export const controller = {
   doFunc,
