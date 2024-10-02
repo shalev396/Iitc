@@ -735,11 +735,11 @@ function solution64() {
   const array = ["תפוח", "בננה", "דובדבן"];
 
   const newArray = array.reduce(function (prev, cur) {
-    return prev.toString().length + cur.toString().length;
-  });
+    return prev + cur.length;
+  }, 0);
   log = newArray;
 
-  return "TODO";
+  return log;
 }
 function solution65() {
   let log = "";
@@ -842,13 +842,13 @@ function solution74() {
   let log = "";
 
   const array = [{ א: 1 }, { ב: 2 }, { ג: 3 }];
-  const newObj = { a: 1 };
-  const newArray = array.reduce(function (val) {
-    return newObj[val];
-    // get keys
+
+  const newArray = array.reduce(function (val, obj) {
+    //used stack overflow
+    return Object.assign(val, obj);
   });
   log = newArray;
-  return "TODO";
+  return JSON.stringify(log);
 }
 function solution75() {
   let log = "";
@@ -866,12 +866,22 @@ function solution76() {
 
   const array = ["א1", "ב2", "ג3"];
 
-  log = array.every(function (val) {
-    return val;
-    // ascii
+  log = array.every(function (str) {
+    let hasLetter = false;
+    let hasNumber = false;
+
+    for (let i = 0; i < str.length; i++) {
+      if (isNaN(str[i])) {
+        hasLetter = true;
+      } else {
+        hasNumber = true;
+      }
+    }
+
+    return hasLetter && hasNumber;
   });
 
-  return "TODO";
+  return log;
 }
 function solution77() {
   let log = "";
@@ -914,6 +924,72 @@ function solution80() {
   const newArray = array.flat(Number.MAX_VALUE);
   log = newArray;
   return JSON.stringify(log);
+}
+function solution81() {
+  let log = "";
+
+  const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  const newArray = array.filter(function (item) {
+    return item % 2 === 0;
+  });
+
+  const logArray = newArray.map(function (item) {
+    return item * item;
+  });
+  return logArray;
+}
+function solution82() {
+  let log = "";
+
+  const array = [
+    { name: "Alice", age: 25 },
+    { name: "Bob", age: 30 },
+    { name: "Charlie", age: 25 },
+  ];
+
+  const newArray = array.reduce(function (prev, cur) {
+    if (!prev[cur.age]) {
+      prev[cur.age] = [];
+    }
+    prev[cur.age].push(cur);
+    return prev;
+  }, {});
+  log = newArray;
+  return JSON.stringify(log);
+}
+// fitosi this one is hard
+function solution83() {
+  let log = "";
+
+  const funcArr = [
+    function () {
+      console.log(1);
+      log++;
+    },
+    function () {
+      console.log(2);
+      log++;
+    },
+    function () {
+      console.log(3);
+      log++;
+    },
+  ];
+  //used 4 stack overflow questions9
+  function debounce(func, delay) {
+    let timer;
+    return function (...args) {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(this, args);
+      }, delay);
+    };
+  }
+  const debFun = funcArr.map((func) => debounce(func, 1000));
+
+  debFun.forEach((debouncedFunc) => debouncedFunc());
+  return "wait 1 sec and print in log";
 }
 //exports
 export const controller = {

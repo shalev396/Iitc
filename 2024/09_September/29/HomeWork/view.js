@@ -7,7 +7,7 @@ import { controller } from "./controller.js";
 //declare variable
 const questionsKey = `question`;
 const questions = utils.getFromStorage(questionsKey);
-const myProgress = 80;
+const myProgress = 83;
 //get elements from document
 const tableQuestions = document.getElementById("tableQuestions");
 //checks if has employs
