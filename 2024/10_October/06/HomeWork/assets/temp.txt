@@ -1,0 +1,69 @@
+//here only the rendering stuff needs to be
+//"Displays the list of questions and provides solutions"
+//imports
+import { utils } from "./utils.js";
+import { service } from "./service.js";
+import { controller } from "./controller.js";
+//declare variable
+const card = {
+  number: "1234",
+  uid: "abcd",
+  count: 0,
+  blocked: false,
+  pin: "1234",
+};
+//testing
+let isIdle = true;
+let uid = "";
+const count = 0;
+const idleHTML = `<h1>Idle</h1><p>click anywhere to continue</p>`;
+const homeHtml = `<h1>welcome to Maze Bank ATM</h1><p>Please enter your card</p><input type="text"id="cardnumber"placeholder="enter your card number"/><button id="addCard" >insert</button>`;
+const sorryHTML = `<h1>fraud detected</h1><p>please press again to go to the home page</p>`;
+const pinHTML = `<h1>welcome to Maze Bank ATM</h1><p>Please enter your PIN</p> <input type="text" vid="cardnumber" placeholder="enter your pin" /><button id="PIN" >insert</button>`;
+const content = document.getElementById("content");
+
+content.innerHTML = idleHTML;
+content.addEventListener("click", function () {
+  if (isIdle || content.innerHTML === sorryHTML) {
+    content.innerHTML = homeHtml;
+    const cardnumber = document.getElementById("cardnumber");
+    const addCard = document.getElementById("addCard");
+    addCard.addEventListener("click", function () {
+      console.log(
+        cardnumber.value,
+        card.number,
+        cardnumber.value === card.number,
+        count
+      );
+      if (cardnumber.value === card.number) {
+        uid = card.uid;
+        if (card.count > 3) {
+          card.blocked = true;
+          alert("your account is blocked and the bank has been notify");
+          content.innerHTML = sorryHTML;
+        } else {
+          console.log("a");
+
+          content.innerHTML = pinHTML;
+          console.log(content.innerHTML, pinHTML);
+
+          const pinInput = document.getElementById("pinInput");
+          const pinBut = document.getElementById("PIN");
+          pinBut.addEventListener("click", function () {
+            if (pinInput.value === addCard.pin) {
+              console.log("good");
+            } else {
+              card.count++;
+            }
+            isIdle = false;
+          });
+        }
+      } else {
+        isIdle = false;
+        alert("your card is not supported here");
+        content.innerHTML = idleHTML;
+      }
+    });
+    isIdle = false;
+  } else isIdle = true;
+});
