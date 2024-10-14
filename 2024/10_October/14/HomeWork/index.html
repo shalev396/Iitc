@@ -3,26 +3,86 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Homework API Operations</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header>
-      <h1>HomeWork</h1>
+      <h1>API Homework</h1>
     </header>
     <main>
       <div class="posts">
-        <h1>fitossi api</h1>
-
+        <h1>Posts</h1>
         <table id="tableposts">
           <tr>
-            <th class="id">id</th>
-            <th class="title">title</th>
-            <th class="content">context</th>
-            <th class="date">date</th>
+            <th class="id">ID</th>
+            <th class="title">Title</th>
+            <th class="content">Content</th>
+            <th class="date">Date</th>
           </tr>
         </table>
       </div>
+
+      <div>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search Posts by Title"
+        />
+      </div>
+
+      <div>
+        <button id="sortButton">Sort Alphabetically</button>
+      </div>
+
+      <div>
+        <input type="text" id="postIdInput" placeholder="Enter Post ID" />
+        <button id="fetchPostButton">Fetch Post</button>
+      </div>
+      <div id="singlePost"></div>
+
+      <div>
+        <h3>Create a New Post</h3>
+        <form id="createPostForm">
+          <input type="text" id="newPostTitle" placeholder="Title" required />
+          <textarea
+            id="newPostContent"
+            placeholder="Content"
+            required
+          ></textarea>
+          <button type="submit">Create Post</button>
+        </form>
+        <div id="createPostMessage"></div>
+      </div>
+
+      <div>
+        <h3>Update a Post</h3>
+        <form id="updatePostForm">
+          <input type="text" id="updatePostId" placeholder="Post ID" required />
+          <input
+            type="text"
+            id="updatePostTitle"
+            placeholder="Title"
+            required
+          />
+          <textarea
+            id="updatePostContent"
+            placeholder="Content"
+            required
+          ></textarea>
+          <button type="submit">Update Post</button>
+        </form>
+        <div id="updatePostMessage"></div>
+      </div>
+
+      <div>
+        <h3>Delete a Post</h3>
+        <input type="text" id="deletePostId" placeholder="Post ID" required />
+        <button id="deletePostButton">Delete Post</button>
+        <div id="deletePostMessage"></div>
+      </div>
+
+      <div id="loading" style="display: none">Loading...</div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="module" src="view.js"></script>
