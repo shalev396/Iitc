@@ -1,0 +1,12 @@
+#header {
+  color: blue;
+}
+#modal {
+  display: none;
+  visibility: hidden;
+}
+@media (max-width: 600px) {
+  #modal {
+    width: 40px;
+  }
+}
