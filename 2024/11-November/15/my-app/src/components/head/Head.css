@@ -1,0 +1,38 @@
+.head {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+.omelet-img {
+  width: 100%;
+  border-radius: 8px;
+}
+.page-title {
+  font-family: young-serif;
+  font-weight: 400;
+  font-size: 40px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-top: 1rem;
+}
+@media (max-width: 480px) {
+  .head {
+    align-items: center;
+  }
+  .page-title {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1;
+    width: 89%;
+  }
+
+  .intro {
+    width: 84%;
+  }
+
+  .omelet-img {
+    border-radius: 0px;
+    width: 100%;
+  }
+}

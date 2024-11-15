@@ -1,0 +1,42 @@
+.nutrition {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+.subtitle-nutrition {
+  font-family: young-serif;
+  color: var(--colorBrown-800);
+  font-size: 1.7rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+.p-nutrition {
+  margin-bottom: 1rem;
+  width: 94%;
+}
+.table-nutrition {
+  width: 100%;
+}
+.tr-nutrition {
+}
+.bordered-bottom {
+  border-bottom: 1px solid var(--colorStone-150);
+}
+.td-name-nutrition {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 2rem;
+  width: 53%;
+}
+.td-number-nutrition {
+  font-weight: 600;
+  color: var(--colorBrown-800);
+}
+@media (max-width: 480px) {
+  .table-nutrition {
+    margin-bottom: 1rem;
+  }
+}

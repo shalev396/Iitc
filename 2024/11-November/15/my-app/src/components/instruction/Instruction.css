@@ -1,0 +1,35 @@
+.instruction {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--colorStone-150);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  width: 100%;
+}
+.subtitle-instruction {
+  font-family: young-serif;
+  color: var(--colorBrown-800);
+  font-size: 1.7rem;
+  font-weight: 400;
+}
+.ul-instruction {
+  margin-left: 1.3rem;
+  width: 100%;
+}
+.li-instruction {
+  list-style: decimal;
+  padding-left: 1rem;
+
+  margin-bottom: 0.2rem;
+}
+.li-instruction::marker {
+  font-family: NATS;
+  font-size: 20px;
+  color: var(--colorBrown-800);
+  font-weight: bold;
+}
+.instruction-highlight {
+  font-weight: bold;
+}

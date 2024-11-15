@@ -1,0 +1,51 @@
+:root {
+  --colorWhite-10: hsl(0, 0%, 100%);
+
+  --colorStone-100: hsl(30, 54%, 90%);
+  --colorStone-150: hsl(30, 18%, 87%);
+  --colorStone-600: hsl(30, 10%, 34%);
+  --colorStone-900: hsl(24, 5%, 18%);
+
+  --colorBrown-800: hsl(14, 45%, 36%);
+
+  --colorRose-700: hsl(332, 51%, 32%);
+  --colorRose-50: hsl(330, 100%, 98%);
+}
+@font-face {
+  font-family: "Outfit";
+  src: url("../public/assets/fonts/outfit/Outfit-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "young-serif";
+  src: url("../public//assets//fonts/young-serif/YoungSerif-Regular.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "NATS";
+  src: url("../public//assets//fonts/nats/NATS-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+* {
+  font-family: Outfit;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.app {
+  background-size: cover;
+  width: 100%;
+  background-color: var(--colorStone-100);
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}

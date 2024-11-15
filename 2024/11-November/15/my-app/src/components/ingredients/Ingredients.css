@@ -1,0 +1,27 @@
+.ingredients {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  width: 100%;
+  border-bottom: 1px solid var(--colorStone-100);
+  margin-top: 1rem;
+}
+.subtitle-ingredients {
+  font-family: young-serif;
+  color: var(--colorBrown-800);
+  font-size: 1.7rem;
+  font-weight: 400;
+}
+.ul-ingredients {
+  width: 100%;
+  margin-top: 1rem;
+  padding-bottom: 1.5rem;
+  margin-left: 1.3rem;
+}
+.li-ingredients {
+  padding-left: 1rem;
+}
+.li-ingredients::marker {
+  font-size: 0.8rem;
+}

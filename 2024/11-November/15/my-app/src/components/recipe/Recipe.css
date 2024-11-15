@@ -1,0 +1,7 @@
+.recipe {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  margin-right: 1.2rem;
+}
