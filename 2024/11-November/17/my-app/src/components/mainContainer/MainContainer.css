@@ -1,0 +1,10 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  width: 380px;
+  background-color: var(--color-p-DarkBlue-700);
+  padding: 1.4rem;
+  border: solid 0px;
+  border-radius: 1rem;
+}

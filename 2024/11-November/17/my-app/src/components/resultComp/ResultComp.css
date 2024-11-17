@@ -1,0 +1,35 @@
+.resultComp {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+img.resultIcon {
+  justify-self: center;
+  margin-bottom: 1rem;
+}
+.selection {
+  width: fit-content;
+  background-color: var(--color-p-DarkBlue-600);
+  color: var(--color-p-Orange-500);
+  padding: 1rem;
+  border-radius: 6rem;
+  justify-self: center;
+  margin-bottom: 2rem;
+}
+p {
+  display: flex;
+  color: var(--color-p-Light-Grey-200);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 24px;
+}

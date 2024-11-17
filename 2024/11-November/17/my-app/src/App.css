@@ -1,38 +1,44 @@
-.App {
-  text-align: center;
-}
+:root {
+  --color-p-Orange-500: hsl(25, 97%, 53%);
+  --color-p-White-100: hsl(0, 0%, 100%);
+  --color-p-Light-Grey-200: hsl(217, 12%, 63%);
+  --color-p-DarkBlue-700: hsl(213, 19%, 18%);
+  --color-p-DarkBlue-600: hsl(210, 17%, 20%);
+  --color-p-Very-Dark-Blue-800: hsl(216, 12%, 8%);
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  --font-size: 15px;
+  --font-wight-400: 400;
+  --font-wight-700: 700;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@font-face {
+  font-family: "Outfit";
+  src: url("../public/assets/fonts/Overpass/Overpass-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
+* {
+  font-family: Outfit;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+html,
+body {
+  font-size: var(--font-size);
+  height: 100%;
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: var(--color-p-Very-Dark-Blue-800);
+  font-family: Overpass;
+  font-weight: var(--font-wight-400);
+  color: var(--color-p-White-100);
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  align-items: center;
 }
