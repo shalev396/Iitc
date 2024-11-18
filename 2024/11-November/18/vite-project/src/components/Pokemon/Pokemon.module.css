@@ -1,0 +1,50 @@
+.card {
+  border-radius: 16px;
+  display: flex;
+  color: white;
+  z-index: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2rem;
+}
+/* .card:last-child {
+  align-items: end;
+} */
+img.back {
+  opacity: 0.5;
+  z-index: 1;
+  width: 50px;
+  height: 50px;
+  margin-top: 25px;
+  margin-left: 25px;
+  /* position: absolute; */
+}
+img.front {
+  z-index: 2;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+}
+div.side {
+  align-self: end;
+  height: 100px;
+  position: absolute;
+  margin-top: 5rem;
+  margin-right: 1.3rem;
+}
+.ul {
+  padding-left: 1rem;
+  align-self: start;
+  list-style-type: none;
+}
+.title {
+  /* padding-left: 1rem; */
+  margin-left: 1rem;
+  align-self: start;
+  font-size: 25px;
+}
+.li {
+  align-self: start;
+  font-size: 16px;
+}
