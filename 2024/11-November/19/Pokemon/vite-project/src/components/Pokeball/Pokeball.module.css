@@ -1,0 +1,18 @@
+.ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 0;
+}
+.li {
+  width: 200px;
+  height: fit-content;
+  margin: 10px;
+}
+.mains {
+  width: 100%;
+  display: flex;
+  justify-self: center;
+}
