@@ -210,7 +210,6 @@ const Pokemon = ({ name, url, customPokemon }) => {
             <div className={styles.stat}>
               HP: {pokemon.stats.find((s) => s.stat.name === "hp").base_stat}
             </div>
-            {/* Add more condensed stats here */}
           </div>
         </div>
       </div>

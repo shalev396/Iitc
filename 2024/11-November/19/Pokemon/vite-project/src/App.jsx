@@ -13,11 +13,6 @@ import AddIcon from "@mui/icons-material/Add";
 function App() {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
 
-  const handleAddPokemon = (newPokemon) => {
-    // The AddPokemon component will handle saving to localStorage
-    // You might want to refresh the Pokeball component here
-  };
-
   return (
     <>
       <h1>Pokedex</h1>
@@ -40,7 +35,6 @@ function App() {
       <AddPokemon
         open={isAddDialogOpen}
         onClose={() => setIsAddDialogOpen(false)}
-        onAdd={handleAddPokemon}
       />
     </>
   );

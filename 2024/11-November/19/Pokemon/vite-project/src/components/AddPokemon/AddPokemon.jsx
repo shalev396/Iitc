@@ -111,7 +111,6 @@ const AddPokemon = ({ open, onClose, onAdd }) => {
             onChange={handleChange}
             required
           />
-          {/* Add more fields for attack, defense, etc. */}
         </DialogContent>
         <DialogActions>
           <Button onClick={onClose}>Cancel</Button>
