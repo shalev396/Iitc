@@ -6,7 +6,7 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-const Pokemon = ({ name, url }) => {
+const Pokemon = ({ name, url, customPokemon }) => {
   const colors = [
     { color: "green", code: "#48d1b1" },
     { color: "red", code: "#fa6e6b" },
@@ -24,8 +24,19 @@ const Pokemon = ({ name, url }) => {
 
   const [pokemon, setPokemon] = useState(null);
   const [open, setOpen] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const fetchData = async () => {
+    if (customPokemon) {
+      setPokemon({
+        ...customPokemon,
+        moves: [],
+        color: "white",
+        gif: customPokemon.sprites?.other?.showdown?.front_default || "",
+      });
+      return;
+    }
+
     try {
       const { data } = await axios.get(url);
       const [speciesData, spriteData] = await Promise.all([
@@ -48,8 +59,34 @@ const Pokemon = ({ name, url }) => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const checkFavorite = () => {
+      const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+      setIsFavorite(pokemon && favorites.includes(pokemon.id));
+    };
+
+    checkFavorite();
+  }, [pokemon]);
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const toggleFavorite = (e) => {
+    e.stopPropagation();
+    if (!pokemon) return;
+
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    let newFavorites;
+
+    if (isFavorite) {
+      newFavorites = favorites.filter((id) => id !== pokemon.id);
+    } else {
+      newFavorites = [...favorites, pokemon.id];
+    }
+
+    localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    setIsFavorite(!isFavorite);
+  };
 
   const style = pokemon
     ? {
@@ -57,32 +94,17 @@ const Pokemon = ({ name, url }) => {
         top: "50%",
         left: "50%",
         transform: "translate(-50%, -50%)",
-        width: 300,
-        height: 300,
+        width: "90%",
+        maxWidth: "400px",
+        maxHeight: "90vh",
         overflowY: "auto",
         bgcolor: getColorCode(pokemon.color),
         border: "2px solid #000",
+        borderRadius: "12px",
         boxShadow: 24,
         padding: "16px",
       }
     : {};
-  function addToFavorites(pok) {
-    const favorites = JSON.parse(localStorage.getItem("favorites"));
-    if (!favorites) {
-      localStorage.setItem("favorites", JSON.stringify([pok.id]));
-    } else {
-      if (favorites.includes(pok.id)) {
-        localStorage.setItem(
-          "favorites",
-          JSON.stringify(favorites.splice(favorites.indexOf(pok.id) - 1, 1))
-        );
-      } else {
-        favorites.push(pok.id);
-        localStorage.setItem("favorites", JSON.stringify(favorites));
-      }
-    }
-    console.log(favorites);
-  }
 
   return (
     pokemon && (
@@ -98,21 +120,23 @@ const Pokemon = ({ name, url }) => {
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                handleClose();
-              }}
-              style={{ float: "left" }}
-            >
-              ✖
-            </button>
-            <button
-              style={{ float: "right" }}
-              onClick={() => addToFavorites(pokemon)}
-            >
-              ♡,❤︎
-            </button>
+            <div className={styles.modalHeader}>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleClose();
+                }}
+                className={styles.closeButton}
+              >
+                ✖
+              </button>
+              <button
+                className={styles.favoriteButton}
+                onClick={toggleFavorite}
+              >
+                {isFavorite ? "❤️" : "🤍"}
+              </button>
+            </div>
             <Typography id="modal-modal-title" variant="h6" component="h2">
               {name}
             </Typography>
@@ -146,14 +170,16 @@ const Pokemon = ({ name, url }) => {
               <li>Base Experience: {pokemon.base_experience}</li>
               <li>Weight: {pokemon.weight}</li>
               <li>Height: {pokemon.height}</li>
-              <li>
-                Moves:
-                <ul>
-                  {pokemon.moves.slice(0, 10).map((move) => (
-                    <li key={move.move.name}>{move.move.name}</li>
-                  ))}
-                </ul>
-              </li>
+              {pokemon.moves && pokemon.moves.length > 0 && (
+                <li>
+                  Moves:
+                  <ul>
+                    {pokemon.moves.slice(0, 10).map((move) => (
+                      <li key={move.move.name}>{move.move.name}</li>
+                    ))}
+                  </ul>
+                </li>
+              )}
             </ul>
             <img
               style={{ float: "right", width: "150px", height: "150px" }}
@@ -163,21 +189,29 @@ const Pokemon = ({ name, url }) => {
           </Box>
         </Modal>
 
-        <h1 className={styles.title}>{name}</h1>
-        <ul className={styles.ul}>
-          {pokemon.abilities.map(({ ability }) => (
-            <li className={styles.li} key={ability.name}>
-              {ability.name}
-            </li>
-          ))}
-        </ul>
-        <div className={styles.side}>
-          <img className={styles.front} src={pokemon.gif} alt={`${name} gif`} />
-          <img
-            className={styles.back}
-            src="./icons8-pokeball-50.png"
-            alt="Pokéball"
-          />
+        <div className={styles.cardContent}>
+          <h1 className={styles.title}>{name}</h1>
+          <div className={styles.types}>
+            {pokemon.types.map(({ type }) => (
+              <span key={type.name} className={styles.type}>
+                {type.name}
+              </span>
+            ))}
+          </div>
+          <div className={styles.side}>
+            <img
+              className={styles.front}
+              src={pokemon.gif}
+              alt={`${name} sprite`}
+              loading="lazy"
+            />
+          </div>
+          <div className={styles.stats}>
+            <div className={styles.stat}>
+              HP: {pokemon.stats.find((s) => s.stat.name === "hp").base_stat}
+            </div>
+            {/* Add more condensed stats here */}
+          </div>
         </div>
       </div>
     )
