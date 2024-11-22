@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Pokemon from "../Pokemon/Pokemon.jsx";
+import Pokemon from "../Pokemon/Pokemon";
 import styles from "./Pokeball.module.css";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
@@ -101,13 +101,23 @@ const Pokeball = ({ initialPokemonId, onModalClose }) => {
     navigate(`/page/${value}`);
   };
 
-  // Filter custom Pokemon if showing favorites
-  const filteredCustomPokemons = showFavoritesOnly
-    ? customPokemons.filter((pokemon) => {
-        const favorites = getFavorites();
-        return favorites.includes(pokemon.id);
-      })
-    : customPokemons;
+  // Filter Pokemon based on favorites
+  const filteredPokemons = pokemons.filter((pokemon) => {
+    if (showFavoritesOnly) {
+      const favorites = getFavorites();
+      return favorites.includes(pokemon.url.split("/")[6]);
+    }
+    return true;
+  });
+
+  // Filter custom Pokemon based on favorites
+  const filteredCustomPokemons = customPokemons.filter((pokemon) => {
+    if (showFavoritesOnly) {
+      const favorites = getFavorites();
+      return favorites.includes(pokemon.id);
+    }
+    return true;
+  });
 
   return (
     <div className={styles.mains}>
@@ -116,7 +126,7 @@ const Pokeball = ({ initialPokemonId, onModalClose }) => {
           className={`${styles.filterButton} ${
             showFavoritesOnly ? styles.active : ""
           }`}
-          onClick={toggleFavorites}
+          onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
         >
           {showFavoritesOnly ? "Show All" : "Show Favorites"}
         </button>
@@ -129,11 +139,11 @@ const Pokeball = ({ initialPokemonId, onModalClose }) => {
         {filteredCustomPokemons.map((pokemon) => (
           <li
             className={`${styles.li} ${styles.customPokemon}`}
-            key={`custom-${pokemon.id}`}
+            key={pokemon.id}
           >
             <Pokemon
               name={pokemon.name}
-              url={pokemon.url}
+              url={`/custom/${pokemon.id}`}
               customPokemon={pokemon}
               isOpen={selectedPokemonId === pokemon.id}
               onClose={onModalClose}
@@ -142,19 +152,16 @@ const Pokeball = ({ initialPokemonId, onModalClose }) => {
         ))}
 
         {/* API Pokemons */}
-        {pokemons.map((pokemon) => {
-          const pokemonId = pokemon.url.split("/")[6];
-          return (
-            <li className={styles.li} key={`pokemon-${pokemonId}`}>
-              <Pokemon
-                name={pokemon.name}
-                url={pokemon.url}
-                isOpen={selectedPokemonId === pokemonId}
-                onClose={onModalClose}
-              />
-            </li>
-          );
-        })}
+        {filteredPokemons.map((pokemon) => (
+          <li className={styles.li} key={pokemon.url.split("/")[6]}>
+            <Pokemon
+              name={pokemon.name}
+              url={pokemon.url}
+              isOpen={selectedPokemonId === pokemon.url.split("/")[6]}
+              onClose={onModalClose}
+            />
+          </li>
+        ))}
       </ul>
 
       {isLoading && <div className={styles.loading}>Loading...</div>}

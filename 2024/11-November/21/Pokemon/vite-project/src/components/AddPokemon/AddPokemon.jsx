@@ -42,7 +42,22 @@ function AddPokemon() {
       ...formData,
       id: `custom-${Date.now()}`,
       url: `custom-${Date.now()}`,
-      types: formData.types.map((type) => ({ type: { name: type } })),
+      types: formData.types.filter((type) => type.trim() !== ""),
+      abilities: formData.abilities.filter((ability) => ability.trim() !== ""),
+      stats: formData.stats.map((stat) => ({
+        stat: { name: stat.stat.name },
+        base_stat: parseInt(stat.base_stat) || 0,
+      })),
+      color: "white",
+      sprites: {
+        other: {
+          showdown: {
+            front_default:
+              formData.sprites.other.showdown.front_default ||
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png",
+          },
+        },
+      },
     };
 
     // Get existing custom Pokemon
