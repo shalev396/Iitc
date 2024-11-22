@@ -16,7 +16,7 @@ import {
   useNavigate,
   Navigate,
 } from "react-router-dom";
-//  useParams: Gets URL parameters (like getting "25" from "/pokemon/25") (react-router-dom)
+//  useParams: Gets URL parameters  "/pokemon/25" (react-router-dom)
 //  useNavigate: Provides navigation function to change pages (react-router-dom)
 //react
 import { useEffect } from "react";
@@ -38,7 +38,7 @@ function SinglePokemonWrapper() {
         navigate("/404");
       }
     }
-  }, [id, isCustomPokemon, navigate]); // Dependencies array - effect runs when these values change
+  }, [id, isCustomPokemon, navigate]); //effect runs when these values change
   // - individual Pokemon = main container and the Pokemon modal
   return (
     <>
