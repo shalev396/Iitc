@@ -11,31 +11,35 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
+//  useLocation: Gets current URL location information (react-router-dom)
+//  NavLink: Provides navigation with active state tracking (react-router-dom)
 
+//navigation pages
 const pages = [
   { name: "Home", path: "/" },
   { name: "Add Pokémon", path: "/addPokemon" },
   { name: "About", path: "/about" },
 ];
-
 function Navigation() {
+  // mobile menu
   const [anchorElNav, setAnchorElNav] = useState(null);
+  //different pages
   const navigate = useNavigate();
+  //get URL
   const location = useLocation();
-
+  // mobile menu
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-
+  // mobile menu
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
+  //navigate and close  mobile menu
   const handleNavigate = (path) => {
     navigate(path);
     handleCloseNavMenu();
   };
-
   return (
     <AppBar position="static" sx={{ backgroundColor: "#ff5350" }}>
       <Container maxWidth="xl">

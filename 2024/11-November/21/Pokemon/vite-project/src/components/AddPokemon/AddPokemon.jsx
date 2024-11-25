@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+//useState to manage state (react)
+//useNavigate to navigate to different page (react-router-dom)
+
 import styles from "./AddPokemon.module.css";
 
 function AddPokemon() {
+  //navigate
   const navigate = useNavigate();
+  //state for form
   const [formData, setFormData] = useState({
     name: "",
     types: [""],
@@ -31,13 +36,13 @@ function AddPokemon() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validate form
+    // Validate
     if (!formData.name || !formData.types[0]) {
       alert("Name and at least one type are required!");
       return;
     }
 
-    // Create new Pokemon with correct structure
+    // new Pokemon with structure
     const newPokemon = {
       ...formData,
       id: `custom-${Date.now()}`,
@@ -60,7 +65,7 @@ function AddPokemon() {
       },
     };
 
-    // Get existing custom Pokemon
+    // Get existing Pokemon
     const existingPokemons =
       JSON.parse(localStorage.getItem("customPokemons")) || [];
 
@@ -79,7 +84,6 @@ function AddPokemon() {
     newTypes[index] = value;
     setFormData({ ...formData, types: newTypes });
   };
-
   const addType = () => {
     if (formData.types.length < 2) {
       setFormData({ ...formData, types: [...formData.types, ""] });

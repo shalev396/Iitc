@@ -1,0 +1,15 @@
+//  useState: Manages component state (react)
+//  useEffect: Runs code when component loads or specific values change (react)
+//components
+
+// Props:
+//  page: Current page number
+//  searchTerm: Search filter
+//  showFavorites:  only favorite Pokemon
+
+  const [pokemons, setPokemons] = useState([]); // List of Pokemon
+  const [loading, setLoading] = useState(true); // Loading state
+
+    // Effects
+  //  - Pokemon fetching
+  //  - pagination

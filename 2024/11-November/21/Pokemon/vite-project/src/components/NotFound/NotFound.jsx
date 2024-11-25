@@ -1,36 +1,26 @@
 import { useNavigate } from "react-router-dom";
+//  useNavigate: Provides navigation function to change pages (react-router-dom)
 import styles from "./NotFound.module.css";
-import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
-import Button from "@mui/material/Button";
-import HomeIcon from "@mui/icons-material/Home";
 
+// displays message ,navigation back to home
 function NotFound() {
+  // Navigation
   const navigate = useNavigate();
 
+  //back to home page
+  const handleReturn = () => {
+    navigate("/");
+  };
+
+  // Render Component
   return (
-    <div className={styles.container}>
-      <div className={styles.content}>
-        <SentimentVeryDissatisfiedIcon className={styles.icon} />
-        <h1 className={styles.title}>404</h1>
-        <h2 className={styles.subtitle}>Oh no! Wild 404 appeared!</h2>
-        <p className={styles.text}>
-          The page you're looking for has fled into the tall grass.
-        </p>
-        <Button
-          variant="contained"
-          startIcon={<HomeIcon />}
-          onClick={() => navigate("/")}
-          sx={{
-            backgroundColor: "#ff5350",
-            "&:hover": {
-              backgroundColor: "#ff3d3a",
-            },
-            marginTop: "20px",
-          }}
-        >
-          Return Home
-        </Button>
-      </div>
+    <div className={styles.notFound}>
+      <h1>404</h1>
+      <h2>Page Not Found</h2>
+      <p>The page you are looking for doesn't exist or has been moved.</p>
+      <button onClick={handleReturn} className={styles.returnButton}>
+        Return to Home
+      </button>
     </div>
   );
 }

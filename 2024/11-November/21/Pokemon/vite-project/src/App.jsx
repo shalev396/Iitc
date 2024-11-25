@@ -39,7 +39,7 @@ function SinglePokemonWrapper() {
       }
     }
   }, [id, isCustomPokemon, navigate]); //effect runs when these values change
-  // - individual Pokemon = main container and the Pokemon modal
+  // - individual Pokemon
   return (
     <>
       <MainContainer />

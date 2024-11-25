@@ -2,10 +2,26 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import React from "react";
 import axios from "axios";
-import styles from "./Pokemon.module.css";
+//  useNavigate: Provides navigation function to change pages (react-router-dom)
+//  useLocation: Gets current URL location information (react-router-dom)
+//  useState: Manages component state (react)
+//  useEffect: Runs code when component loads or specific values change (react)
+
+//mui
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+
+//styles
+import styles from "./Pokemon.module.css";
+
+// Props:
+//  name
+//  url:Pokemon data
+//  customPokemon: Custom Pokemon data object
+//  isOpen: modal state
+//  onClose: Modal
+//  modalView: used in modal view
 
 function Pokemon({
   name,
@@ -15,12 +31,15 @@ function Pokemon({
   onClose,
   modalView,
 }) {
+  // Navigation
   const navigate = useNavigate();
   const location = useLocation();
-  const [pokemon, setPokemon] = useState(null);
-  const [open, setOpen] = useState(initialIsOpen || false);
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [pokemonColor, setPokemonColor] = useState("white");
+
+  // State Management
+  const [pokemon, setPokemon] = useState(null); // Pokemon data
+  const [open, setOpen] = useState(initialIsOpen || false); // modal state
+  const [isFavorite, setIsFavorite] = useState(false); // favorite status
+  const [pokemonColor, setPokemonColor] = useState("white"); // card color
 
   const colors = [
     { color: "green", code: "#48d1b1" },
@@ -35,11 +54,13 @@ function Pokemon({
     { color: "black", code: "#6c6c6c" },
   ];
 
+  //  color to hex code
   const getColorCode = (color) => {
     const colorObj = colors.find((c) => c.color === color);
-    return colorObj ? colorObj.code : "#d3d3d3";
+    return colorObj ? colorObj.code : "#d3d3d3"; // defaults to light gray
   };
 
+  // Pokemon card click
   const handleOpen = () => {
     if (!modalView) {
       const id = customPokemon ? customPokemon.id : url.split("/")[6];
@@ -49,6 +70,7 @@ function Pokemon({
     }
   };
 
+  // modal closing
   const handleClose = () => {
     setOpen(false);
     if (onClose) {
@@ -56,6 +78,7 @@ function Pokemon({
     }
   };
 
+  //Fetches Pokemon details
   useEffect(() => {
     const fetchData = async () => {
       if (customPokemon) {
@@ -88,12 +111,15 @@ function Pokemon({
     fetchData();
   }, [url, customPokemon]);
 
+  //Checks favorites
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     const pokemonId = customPokemon ? customPokemon.id : url.split("/")[6];
     setIsFavorite(favorites.includes(pokemonId));
   }, [url, customPokemon]);
 
+  //  - Updates localStorage
+  //  - Updates UI state
   const toggleFavorite = (e) => {
     e.stopPropagation();
 
@@ -111,6 +137,7 @@ function Pokemon({
     setIsFavorite(!isFavorite);
   };
 
+  // Modal
   const style = {
     position: "absolute",
     top: "50%",
@@ -127,6 +154,7 @@ function Pokemon({
     padding: "16px",
   };
 
+  // type name
   const getTypeName = (typeObj) => {
     if (customPokemon) {
       return typeObj.type?.name || typeObj;
@@ -134,6 +162,7 @@ function Pokemon({
     return typeObj.type?.name || "unknown";
   };
 
+  // Render Component
   return (
     pokemon && (
       <div

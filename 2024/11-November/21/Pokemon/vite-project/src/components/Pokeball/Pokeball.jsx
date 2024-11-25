@@ -43,15 +43,18 @@ const Pokeball = ({ initialPokemonId, onModalClose }) => {
   const fetchData = async () => {
     try {
       setIsLoading(true);
+      setPokemons([]); // Clear existing Pokemon before fetching new ones
 
       if (showFavoritesOnly) {
         const favorites = getFavorites();
-        const favoritePokemonPromises = favorites.map((id) =>
+        // Remove duplicates from favorites array
+        const uniqueFavorites = [...new Set(favorites)];
+        const favoritePokemonPromises = uniqueFavorites.map((id) =>
           fetchPokemonData(id)
         );
         const favoritePokemons = await Promise.all(favoritePokemonPromises);
         setPokemons(favoritePokemons.filter((pokemon) => pokemon !== null));
-        setTotalPages(1); // Only one page for favorites
+        setTotalPages(1);
       } else {
         const offset = (parseInt(page) - 1) * limit;
         const countResponse = await axios.get(
@@ -63,7 +66,12 @@ const Pokeball = ({ initialPokemonId, onModalClose }) => {
         const response = await axios.get(
           `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`
         );
-        setPokemons(response.data.results);
+        // Ensure we don't have duplicates in the regular view
+        const uniqueResults = response.data.results.filter(
+          (pokemon, index, self) =>
+            index === self.findIndex((p) => p.url === pokemon.url)
+        );
+        setPokemons(uniqueResults);
       }
 
       setError(null);
@@ -101,15 +109,6 @@ const Pokeball = ({ initialPokemonId, onModalClose }) => {
     navigate(`/page/${value}`);
   };
 
-  // Filter Pokemon based on favorites
-  const filteredPokemons = pokemons.filter((pokemon) => {
-    if (showFavoritesOnly) {
-      const favorites = getFavorites();
-      return favorites.includes(pokemon.url.split("/")[6]);
-    }
-    return true;
-  });
-
   // Filter custom Pokemon based on favorites
   const filteredCustomPokemons = customPokemons.filter((pokemon) => {
     if (showFavoritesOnly) {
@@ -135,33 +134,36 @@ const Pokeball = ({ initialPokemonId, onModalClose }) => {
       {error && <div className={styles.error}>{error}</div>}
 
       <ul className={styles.ul}>
-        {/* Custom Pokemons */}
-        {filteredCustomPokemons.map((pokemon) => (
-          <li
-            className={`${styles.li} ${styles.customPokemon}`}
-            key={pokemon.id}
-          >
-            <Pokemon
-              name={pokemon.name}
-              url={`/custom/${pokemon.id}`}
-              customPokemon={pokemon}
-              isOpen={selectedPokemonId === pokemon.id}
-              onClose={onModalClose}
-            />
-          </li>
-        ))}
+        {/* Only show custom Pokemons in regular view or if they're in favorites */}
+        {(!showFavoritesOnly ||
+          (showFavoritesOnly && filteredCustomPokemons.length > 0)) &&
+          filteredCustomPokemons.map((pokemon) => (
+            <li
+              className={`${styles.li} ${styles.customPokemon}`}
+              key={`custom-${pokemon.id}`}
+            >
+              <Pokemon
+                name={pokemon.name}
+                url={`/custom/${pokemon.id}`}
+                customPokemon={pokemon}
+                isOpen={selectedPokemonId === pokemon.id}
+                onClose={onModalClose}
+              />
+            </li>
+          ))}
 
-        {/* API Pokemons */}
-        {filteredPokemons.map((pokemon) => (
-          <li className={styles.li} key={pokemon.url.split("/")[6]}>
-            <Pokemon
-              name={pokemon.name}
-              url={pokemon.url}
-              isOpen={selectedPokemonId === pokemon.url.split("/")[6]}
-              onClose={onModalClose}
-            />
-          </li>
-        ))}
+        {/* Only show API Pokemons if we have them */}
+        {pokemons.length > 0 &&
+          pokemons.map((pokemon) => (
+            <li className={styles.li} key={`api-${pokemon.url.split("/")[6]}`}>
+              <Pokemon
+                name={pokemon.name}
+                url={pokemon.url}
+                isOpen={selectedPokemonId === pokemon.url.split("/")[6]}
+                onClose={onModalClose}
+              />
+            </li>
+          ))}
       </ul>
 
       {isLoading && <div className={styles.loading}>Loading...</div>}
