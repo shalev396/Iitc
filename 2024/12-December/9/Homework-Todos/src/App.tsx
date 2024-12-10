@@ -23,6 +23,13 @@ export interface Todo {
 export default function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
+  //
+  if ("" == 0) console.log(true);
+  //i know === will say false because "" is not strictly equal to 0
+  else console.log(false);
+  console.log(5 * "" - 2);
+  const todo0: Todo = { id: "", text: "what the hell", isCompleted: false };
+  console.log(todo0.id + 2);
 
   useEffect(() => {
     setTodos(initTodos);
