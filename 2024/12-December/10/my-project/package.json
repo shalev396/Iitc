@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "server": "json-server --watch db.json",
+    "dev": "vite --host",
+    "server": "json-server --watch --host 85.250.95.96 db.json",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"

@@ -1,56 +1,164 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { generateRandomId } from "../../util/util";
-import { Task } from "../Dashboard/Dashboard";
-import { api } from "../../api";
+import { Task } from "../../types/task";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Button,
+  Box,
+  Alert,
+} from "@mui/material";
+import { SelectChangeEvent } from "@mui/material/Select";
+
 export default function TaskItem({ onAddTask }) {
-  const inputRefTitle = useRef<HTMLInputElement>(null);
-  const inputRefDescription = useRef<HTMLInputElement>(null);
-  const inputRefDueDate = useRef<HTMLInputElement>(null);
-  const inputRefPriority = useRef<HTMLInputElement>(null);
-  const inputRefStatus = useRef<HTMLInputElement>(null);
-  async function handleAdd() {
-    if (
-      !inputRefTitle.current?.value ||
-      !inputRefDescription.current?.value ||
-      !inputRefDueDate.current?.value ||
-      !inputRefPriority.current?.value ||
-      !inputRefStatus.current?.value
-    ) {
-      console.error("Invalid input");
-      return;
+  const [error, setError] = useState<string>("");
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    dueDate: "",
+    priority: "",
+    status: "",
+  });
+
+  const validPriorities: Task["priority"][] = ["Low", "Medium", "High"];
+  const validStatuses: Task["status"][] = [
+    "Pending",
+    "In Progress",
+    "Completed",
+  ];
+
+  const handleChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+      | SelectChangeEvent
+  ) => {
+    const { name, value } = e.target as { name: string; value: unknown };
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const validateForm = (): boolean => {
+    if (!formData.title.trim()) {
+      setError("Title is required");
+      return false;
     }
+    if (!formData.description.trim()) {
+      setError("Description is required");
+      return false;
+    }
+    if (!formData.dueDate) {
+      setError("Due date is required");
+      return false;
+    }
+    if (!validPriorities.includes(formData.priority as Task["priority"])) {
+      setError("Invalid priority value");
+      return false;
+    }
+    if (!validStatuses.includes(formData.status as Task["status"])) {
+      setError("Invalid status value");
+      return false;
+    }
+    return true;
+  };
+
+  const handleAdd = async () => {
+    setError("");
+    if (!validateForm()) return;
 
     const newTask: Task = {
       id: generateRandomId(10),
-      title: inputRefTitle.current.value,
-      description: inputRefDescription.current.value,
-      dueDate: new Date(inputRefDueDate.current.value),
-      priority: inputRefPriority.current.value as Task["priority"],
-      status: inputRefStatus.current.value as Task["status"],
+      title: formData.title,
+      description: formData.description,
+      dueDate: new Date(formData.dueDate),
+      priority: formData.priority as Task["priority"],
+      status: formData.status as Task["status"],
     };
 
     try {
-      // const { data } = await api.post("tasks", newTask);
-      onAddTask(newTask); // Use the response from the API
+      await onAddTask(newTask);
+      setFormData({
+        title: "",
+        description: "",
+        dueDate: "",
+        priority: "",
+        status: "",
+      });
     } catch (error) {
+      setError("Failed to add task");
       console.error("Failed to add task:", error);
     }
-
-    inputRefTitle.current.value = "";
-    inputRefDescription.current.value = "";
-    inputRefDueDate.current.value = "";
-    inputRefPriority.current.value = "";
-    inputRefStatus.current.value = "";
-  }
+  };
 
   return (
-    <div>
-      <input type="text" ref={inputRefTitle} value="test" />
-      <input type="text" ref={inputRefDescription} value="test" />
-      <input type="date" ref={inputRefDueDate} />
-      <input type="text" ref={inputRefPriority} value="Low" />
-      <input type="text" ref={inputRefStatus} value="Pending" />
-      <button onClick={handleAdd}>Add</button>
-    </div>
+    <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+      {error && <Alert severity="error">{error}</Alert>}
+
+      <TextField
+        label="Title"
+        name="title"
+        value={formData.title}
+        onChange={handleChange}
+        required
+      />
+
+      <TextField
+        label="Description"
+        name="description"
+        value={formData.description}
+        onChange={handleChange}
+        required
+      />
+
+      <TextField
+        type="date"
+        label="Due Date"
+        name="dueDate"
+        value={formData.dueDate}
+        onChange={handleChange}
+        required
+        InputLabelProps={{ shrink: true }}
+      />
+
+      <FormControl required>
+        <InputLabel>Priority</InputLabel>
+        <Select
+          name="priority"
+          value={formData.priority}
+          onChange={handleChange}
+          label="Priority"
+        >
+          {validPriorities.map((priority) => (
+            <MenuItem key={priority} value={priority}>
+              {priority}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+
+      <FormControl required>
+        <InputLabel>Status</InputLabel>
+        <Select
+          name="status"
+          value={formData.status}
+          onChange={handleChange}
+          label="Status"
+        >
+          {validStatuses.map((status) => (
+            <MenuItem key={status} value={status}>
+              {status}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+
+      <Button variant="contained" onClick={handleAdd}>
+        Add Task
+      </Button>
+    </Box>
   );
 }

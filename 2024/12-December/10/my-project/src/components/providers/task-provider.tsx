@@ -1,15 +1,6 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { api } from "../../api.ts";
-
-//list of tasks
-interface Task {
-  id: string;
-  title: string;
-  description: string;
-  dueDate: Date;
-  priority: "Low" | "Medium" | "High";
-  status: "Pending" | "In Progress" | "Completed";
-}
+import { Task } from "../../types/task";
 
 interface TaskContextType {
   tasks: Task[] | null;

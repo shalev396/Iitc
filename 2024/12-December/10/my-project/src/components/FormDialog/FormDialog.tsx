@@ -1,16 +1,40 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
+import {
+  Button,
+  TextField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Alert,
+} from "@mui/material";
 import { useTask } from "../providers/task-provider";
+import { Task } from "../../types/task";
+import { SelectChangeEvent } from "@mui/material/Select";
 
 export default function FormDialog({ singleTask }) {
-  const { tasks: contextTasks, addTask, delTask, setTask } = useTask(); // Access tasks and functions from context
+  const { setTask } = useTask();
   const [open, setOpen] = React.useState(false);
+  const [error, setError] = React.useState<string>("");
+  const [formData, setFormData] = React.useState({
+    title: singleTask.title,
+    description: singleTask.description,
+    dueDate: new Date(singleTask.dueDate).toISOString().split("T")[0],
+    priority: singleTask.priority,
+    status: singleTask.status,
+  });
+
+  const validPriorities: Task["priority"][] = ["Low", "Medium", "High"];
+  const validStatuses: Task["status"][] = [
+    "Pending",
+    "In Progress",
+    "Completed",
+  ];
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -18,101 +42,159 @@ export default function FormDialog({ singleTask }) {
 
   const handleClose = () => {
     setOpen(false);
+    setError("");
   };
-  const handleEdit = (formJson) => {
-    const task = {
+
+  const handleChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+      | SelectChangeEvent<any>
+  ) => {
+    const { name, value } = e.target as { name: string; value: unknown };
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const validateForm = (): boolean => {
+    if (!formData.title.trim()) {
+      setError("Title is required");
+      return false;
+    }
+    if (!formData.description.trim()) {
+      setError("Description is required");
+      return false;
+    }
+    if (!formData.dueDate) {
+      setError("Due date is required");
+      return false;
+    }
+    if (!validPriorities.includes(formData.priority as Task["priority"])) {
+      setError("Invalid priority value");
+      return false;
+    }
+    if (!validStatuses.includes(formData.status as Task["status"])) {
+      setError("Invalid status value");
+      return false;
+    }
+    return true;
+  };
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setError("");
+
+    if (!validateForm()) return;
+
+    const updatedTask: Task = {
       id: singleTask.id,
-      title: formJson.title,
-      description: formJson.description,
-      dueDate: formJson.dueDate,
-      priority: formJson.priority,
-      status: formJson.status,
+      title: formData.title,
+      description: formData.description,
+      dueDate: new Date(formData.dueDate),
+      priority: formData.priority as Task["priority"],
+      status: formData.status as Task["status"],
     };
-    setTask(task);
+
+    try {
+      await setTask(updatedTask);
+      handleClose();
+    } catch (error) {
+      setError("Failed to update task");
+      console.error("Failed to update task:", error);
+    }
   };
+
   return (
     <React.Fragment>
       <Button variant="outlined" onClick={handleClickOpen}>
-        edit
+        Edit
       </Button>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        PaperProps={{
-          component: "form",
-          onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
-            event.preventDefault();
-            const formData = new FormData(event.currentTarget);
-            const formJson = Object.fromEntries((formData as any).entries());
-            const email = formJson.email;
-            handleEdit(formJson);
-            handleClose();
-          },
-        }}
-      >
+      <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
         <DialogTitle>{singleTask.title}</DialogTitle>
-        <DialogContent>
-          <DialogContentText>edit your task here</DialogContentText>
-          <TextField
-            autoFocus
-            required
-            margin="dense"
-            id="title"
-            name="title"
-            label="title"
-            type="text"
-            fullWidth
-            variant="standard"
-          />
-          <TextField
-            autoFocus
-            required
-            margin="dense"
-            id="description"
-            name="description"
-            label="description"
-            type="text"
-            fullWidth
-            variant="standard"
-          />
-          <TextField
-            autoFocus
-            required
-            margin="dense"
-            id="dueDate"
-            name="dueDate"
-            label="dueDate"
-            type="date"
-            fullWidth
-            variant="standard"
-          />
-          <TextField
-            autoFocus
-            required
-            margin="dense"
-            id="priority"
-            name="priority"
-            label="priority"
-            type="text"
-            fullWidth
-            variant="standard"
-          />
-          <TextField
-            autoFocus
-            required
-            margin="dense"
-            id="status"
-            name="status"
-            label="status"
-            type="text"
-            fullWidth
-            variant="standard"
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit">Subscribe</Button>
-        </DialogActions>
+        <form onSubmit={handleSubmit}>
+          <DialogContent>
+            <DialogContentText>Edit your task here</DialogContentText>
+            {error && (
+              <Alert severity="error" sx={{ mb: 2 }}>
+                {error}
+              </Alert>
+            )}
+
+            <TextField
+              margin="dense"
+              id="title"
+              name="title"
+              label="Title"
+              type="text"
+              fullWidth
+              value={formData.title}
+              onChange={handleChange}
+              required
+            />
+
+            <TextField
+              margin="dense"
+              id="description"
+              name="description"
+              label="Description"
+              type="text"
+              fullWidth
+              value={formData.description}
+              onChange={handleChange}
+              required
+            />
+
+            <TextField
+              margin="dense"
+              id="dueDate"
+              name="dueDate"
+              label="Due Date"
+              type="date"
+              fullWidth
+              value={formData.dueDate}
+              onChange={handleChange}
+              required
+              InputLabelProps={{ shrink: true }}
+            />
+
+            <FormControl fullWidth margin="dense" required>
+              <InputLabel>Priority</InputLabel>
+              <Select
+                name="priority"
+                value={formData.priority}
+                onChange={handleChange}
+                label="Priority"
+              >
+                {validPriorities.map((priority) => (
+                  <MenuItem key={priority} value={priority}>
+                    {priority}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <FormControl fullWidth margin="dense" required>
+              <InputLabel>Status</InputLabel>
+              <Select
+                name="status"
+                value={formData.status}
+                onChange={handleChange}
+                label="Status"
+              >
+                {validStatuses.map((status) => (
+                  <MenuItem key={status} value={status}>
+                    {status}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button type="submit">Save Changes</Button>
+          </DialogActions>
+        </form>
       </Dialog>
     </React.Fragment>
   );
