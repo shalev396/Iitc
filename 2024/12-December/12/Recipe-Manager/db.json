@@ -1,0 +1,84 @@
+{
+  "recipe": [
+    {
+      "id": "1",
+      "title": "Chocolate Cake",
+      "image": "https://scientificallysweet.com/wp-content/uploads/2020/09/IMG_4117-feature.jpg",
+      "ingredients": [
+        "2 cups of flour",
+        "1 cup of sugar",
+        "1/2 cup of cocoa powder",
+        "1 tsp of baking powder",
+        "1 cup of milk",
+        "2 eggs",
+        "1/2 cup of butter (melted)",
+        "1 tsp of vanilla extract"
+      ],
+      "instructions": "Preheat oven to 350°F (175°C). Mix all dry ingredients in a bowl. Add wet ingredients and mix until smooth. Pour into a greased pan and bake for 30-35 minutes or until a toothpick comes out clean.",
+      "category": "Dessert"
+    },
+    {
+      "id": "2",
+      "title": "Caesar Salad",
+      "image": "https://feelgoodfoodie.net/wp-content/uploads/2020/04/Caesar-Salad-TIMG.jpg",
+      "ingredients": [
+        "1 head of romaine lettuce",
+        "1/2 cup of Caesar dressing",
+        "1/4 cup of grated Parmesan cheese",
+        "1 cup of croutons",
+        "1/4 tsp of black pepper"
+      ],
+      "instructions": "Chop the lettuce into bite-sized pieces. Toss with Caesar dressing, Parmesan cheese, croutons, and black pepper. Serve chilled.",
+      "category": "Salad"
+    },
+    {
+      "id": "3",
+      "title": "Spaghetti Carbonara",
+      "image": "https://assets.bonappetit.com/photos/5ea5f4c79820ff0008fe7225/1:1/w_4609,h_4609,c_limit/HLY-carbonara-16x9.jpg",
+      "ingredients": [
+        "200g of spaghetti",
+        "100g of pancetta",
+        "2 large eggs",
+        "1/2 cup of grated Parmesan cheese",
+        "1 clove of garlic (minced)",
+        "Salt and pepper to taste",
+        "2 tbsp of olive oil"
+      ],
+      "instructions": "Cook spaghetti in boiling salted water until al dente. Fry pancetta in olive oil until crisp. Beat eggs with Parmesan cheese, salt, and pepper. Toss hot spaghetti with pancetta and remove from heat. Quickly stir in the egg mixture and serve immediately.",
+      "category": "Dinner"
+    },
+    {
+      "id": "4",
+      "title": "Pancakes",
+      "image": "https://hips.hearstapps.com/hmg-prod/images/perfect-pancakes-recipe-1-65c11b13eb7aa.jpg?crop=1xw:1xh;center,top&resize=640:*",
+      "ingredients": [
+        "1 cup of all-purpose flour",
+        "2 tbsp of sugar",
+        "1 tsp of baking powder",
+        "1/2 tsp of baking soda",
+        "1 cup of milk",
+        "1 egg",
+        "2 tbsp of melted butter",
+        "1/4 tsp of salt"
+      ],
+      "instructions": "Mix dry ingredients in a bowl. Whisk milk, egg, and melted butter in a separate bowl. Combine wet and dry ingredients and stir until just mixed. Pour batter onto a hot greased skillet and cook until bubbles form on top. Flip and cook the other side until golden.",
+      "category": "Breakfast"
+    },
+    {
+      "id": "5",
+      "title": "Grilled Chicken Sandwich",
+      "image": "https://www.eatingonadime.com/wp-content/uploads/2022/04/eod-chick-fil-a-grilled-chicken-sandwich-7-2-1.jpg",
+      "ingredients": [
+        "2 chicken breasts",
+        "4 slices of whole-grain bread",
+        "2 lettuce leaves",
+        "2 slices of tomato",
+        "1/4 cup of mayonnaise",
+        "1 tsp of mustard",
+        "Salt and pepper to taste"
+      ],
+      "instructions": "Season chicken breasts with salt and pepper. Grill until cooked through. Spread mayonnaise and mustard on bread slices. Assemble sandwiches with lettuce, tomato, and grilled chicken.",
+      "category": "Lunch"
+    }
+  ]
+}
