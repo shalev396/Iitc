@@ -1,28 +1,31 @@
 import { AppSidebar } from "@/components/app-sidebar";
-
-import { Separator } from "@/components/ui/separator";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
-5;
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import Recipes from "@/pages/Recipes";
 import Home from "@/pages/Home";
+import Profile from "@/pages/Profile";
+
 export default function Page({ route }: { route: string }) {
+  const renderContent = () => {
+    switch (route) {
+      case "home":
+        return <Home />;
+      case "recipes":
+        return <Recipes />;
+      case "profile":
+        return <Profile />;
+      default:
+        return <Home />;
+    }
+  };
+
   return (
     <SidebarProvider>
-      <AppSidebar route={route} />
-      <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
-          <SidebarTrigger className="-ml-1" />
-          <Separator orientation="vertical" className="mr-2 h-4" />
-          {/* add filter here */}
-        </header>
-
-        {route == "recipes" ? <Recipes /> : ""}
-        {route == "home" ? <Home /> : ""}
-      </SidebarInset>
+      <div className="flex h-screen">
+        <AppSidebar currentRoute={route} />
+        <SidebarInset className="flex-1 overflow-y-auto">
+          {renderContent()}
+        </SidebarInset>
+      </div>
     </SidebarProvider>
   );
 }

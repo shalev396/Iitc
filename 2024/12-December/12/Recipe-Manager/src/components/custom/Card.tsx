@@ -12,10 +12,16 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { DeleteRecipeDialog } from "./DeleteRecipeDialog";
 
 import type { Recipe } from "@/types/Recipe";
 
 export default function RecipeCard({ recipe }: { recipe: Recipe }) {
+  const navigate = useNavigate();
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+
   return (
     <Card>
       <CardHeader>
@@ -43,8 +49,27 @@ export default function RecipeCard({ recipe }: { recipe: Recipe }) {
       </CardContent>
       <CardFooter className="flex-col flex tablet:flex-row-reverse justify-between ">
         <Button variant="like"> Add to Favorite </Button>
-        <Button variant="secondary">Show instructions</Button>
+        <Button
+          variant="secondary"
+          onClick={() => navigate(`/recipes?recipe=${recipe.id}`)}
+        >
+          Show instructions
+        </Button>
+        <Button variant="destructive" onClick={() => setShowDeleteDialog(true)}>
+          Delete
+        </Button>
       </CardFooter>
+      <DeleteRecipeDialog
+        isOpen={showDeleteDialog}
+        recipeId={recipe.id}
+        recipeName={recipe.title}
+        onClose={() => setShowDeleteDialog(false)}
+        onDelete={() => {
+          setShowDeleteDialog(false);
+          // Trigger recipe list refresh
+          window.location.reload();
+        }}
+      />
     </Card>
   );
 }
