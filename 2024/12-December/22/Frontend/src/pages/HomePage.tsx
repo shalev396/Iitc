@@ -11,22 +11,34 @@ const POSTS_PER_PAGE = 6;
 
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1);
   const { toast } = useToast();
 
   const { data, isLoading, refetch } = useQuery({
-    queryKey: ["posts", page, searchQuery],
+    queryKey: ["posts", page, searchTerm],
     queryFn: () =>
       api
         .get("/posts", {
           params: {
             page,
             limit: POSTS_PER_PAGE,
-            search: searchQuery,
+            search: searchTerm,
           },
         })
         .then((res) => res.data),
   });
+
+  const handleSearch = () => {
+    setSearchTerm(searchQuery);
+    setPage(1);
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
 
   if (isLoading) return <div>Loading...</div>;
   if (!data || !data.posts) return <div>No posts found</div>;
@@ -57,15 +69,15 @@ export default function HomePage() {
         </Button>
       </div>
 
-      <Input
-        placeholder="Search posts..."
-        value={searchQuery}
-        onChange={(e) => {
-          setSearchQuery(e.target.value);
-          setPage(1);
-        }}
-        className="max-w-md"
-      />
+      <div className="flex gap-2 max-w-md">
+        <Input
+          placeholder="Search posts..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          onKeyDown={handleKeyPress}
+        />
+        <Button onClick={handleSearch}>Search</Button>
+      </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {data.posts.map((post: any) => (
