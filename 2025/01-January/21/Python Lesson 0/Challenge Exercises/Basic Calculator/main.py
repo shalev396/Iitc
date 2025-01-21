@@ -1,17 +1,16 @@
-from pprint import pprint
 import inquirer
 
 # README: Run in Terminal Not In PyCharm
 def askOp():
-    questions = [
+    ops = [
         inquirer.List(
             "operation",
             message="Which operation do you want?",
             choices=["+", "-", "*", "/"],
         ),
     ]
-    answers = inquirer.prompt(questions)
-    return answers["operation"]
+    choice = inquirer.prompt(ops)
+    return choice["operation"]
 
 def calc():
     print("Calculator")
