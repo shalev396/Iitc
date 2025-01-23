@@ -17,7 +17,12 @@ def ask_operation():
                 "3. Delete a Book",
                 "4. View All Books",
                 "5. Search for a Book",
-                "6. Exit"
+                "6. Sort Books",
+                "7. View Statistics",
+                "8. Filter by Year Range",
+                "9. Export Library",
+                "10. Import Library",
+                "11. Exit"
             ],
         ),
     ]
@@ -33,8 +38,18 @@ def ask_operation():
             return 4
         case "5. Search for a Book":
             return 5
-        case "6. Exit":
+        case "6. Sort Books":
             return 6
+        case "7. View Statistics":
+            return 7
+        case "8. Filter by Year Range":
+            return 8
+        case "9. Export Library":
+            return 9
+        case "10. Import Library":
+            return 10
+        case "11. Exit":
+            return 11
 
 
 # ask user to choose a book
@@ -134,6 +149,43 @@ def exit_library():
     return False
 
 
+def sort_books():
+    sort_options = [
+        inquirer.List(
+            "sort_by",
+            message="Sort books by:",
+            choices=["Title", "Author", "Year"],
+        ),
+    ]
+    choice = inquirer.prompt(sort_options)
+    result = library.sort_books(choice["sort_by"].lower())
+    print(result)
+    get_all_books()
+
+
+def view_statistics():
+    print(library.get_statistics())
+
+
+def filter_by_year_range():
+    try:
+        start_year = int(input("Enter start year: "))
+        end_year = int(input("Enter end year: "))
+        if start_year > end_year:
+            start_year, end_year = end_year, start_year
+        print(library.filter_by_year_range(start_year, end_year))
+    except ValueError:
+        print("Please enter valid year numbers")
+
+
+def export_library():
+    print(library.export_to_json())
+
+
+def import_library():
+    print(library.import_from_json())
+
+
 # to asain function to operation that the user has chosen
 def handle_operation(operation, using):
     match operation:
@@ -148,6 +200,16 @@ def handle_operation(operation, using):
         case 5:
             search_for_book()
         case 6:
+            sort_books()
+        case 7:
+            view_statistics()
+        case 8:
+            filter_by_year_range()
+        case 9:
+            export_library()
+        case 10:
+            import_library()
+        case 11:
             using = exit_library()
     return using
 
@@ -176,6 +238,7 @@ if __name__ == "__main__":
     library.add_book(dummy_book_3)
     library.add_book(dummy_book_4)
     library.add_book(dummy_book_5)
+
     library.add_book(dummy_book_6)
     library.add_book(dummy_book_7)
     library.add_book(dummy_book_8)

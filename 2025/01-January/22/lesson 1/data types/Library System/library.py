@@ -1,4 +1,6 @@
 from book import Book
+import json
+import os
 
 
 class Library:
@@ -66,6 +68,70 @@ class Library:
     @staticmethod
     def exit_library():
         return "goodbye"
+
+    def export_to_json(self):
+        """Export library data to a JSON file"""
+        filename = "library_data.json"
+        data = []
+        for book in self.book_list:
+            data.append({
+                "id": book.id,
+                "title": book.title,
+                "author": book.author,
+                "publication": book.publication
+            })
+        with open(filename, 'w') as f:
+            json.dump(data, f, indent=4)
+        return f"Library data exported to {filename}"
+
+    def import_from_json(self):
+        """Import library data from a JSON file"""
+        filename = "library_data.json"
+        if not os.path.exists(filename):
+            return f"File {filename} not found"
+        with open(filename, 'r') as f:
+            data = json.load(f)
+        self.book_list = []
+        for book_data in data:
+            book = Book(book_data["title"], book_data["author"], book_data["publication"])
+            book.id = book_data["id"]
+            self.book_list.append(book)
+        return f"Library data imported from {filename}"
+
+    def sort_books(self, key="title"):
+        """Sort books by title, author, or year"""
+        if key == "title":
+            self.book_list.sort(key=lambda x: x.title.lower())
+        elif key == "author":
+            self.book_list.sort(key=lambda x: x.author.lower())
+        elif key == "year":
+            self.book_list.sort(key=lambda x: x.publication)
+        return f"Books sorted by {key}"
+
+    def get_statistics(self):
+        """Get library statistics"""
+        if not self.book_list:
+            return "Library is empty"
+        total_books = len(self.book_list)
+        years = [book.publication for book in self.book_list]
+        oldest = min(years)
+        newest = max(years)
+        avg_year = sum(years) / len(years)
+        return f"""Library Statistics:
+Total Books: {total_books}
+Year Range: {oldest} - {newest}
+Average Publication Year: {avg_year:.0f}"""
+
+    def filter_by_year_range(self, start_year, end_year):
+        """Filter books by year range"""
+        filtered_books = [book for book in self.book_list 
+                        if start_year <= book.publication <= end_year]
+        if not filtered_books:
+            return f"No books found between {start_year} and {end_year}"
+        result = f"Books published between {start_year} and {end_year}:\n{seperator()}"
+        for i, book in enumerate(filtered_books):
+            result += f"\n{i}. {book.title} by {book.author} ({book.publication})"
+        return result
 
 
 def seperator():
