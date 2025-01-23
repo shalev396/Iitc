@@ -1,0 +1,62 @@
+[
+    {
+        "id": 36623,
+        "title": "Pride and Prejudice",
+        "author": "Jane Austen",
+        "publication": 1813
+    },
+    {
+        "id": 41354,
+        "title": "Moby-Dick",
+        "author": "Herman Melville",
+        "publication": 1851
+    },
+    {
+        "id": 19157,
+        "title": "War and Peace",
+        "author": "Leo Tolstoy",
+        "publication": 1869
+    },
+    {
+        "id": 65331,
+        "title": "The Adventures of Huckleberry Finn",
+        "author": "Mark Twain",
+        "publication": 1884
+    },
+    {
+        "id": 31401,
+        "title": "The Great Gatsby",
+        "author": "F. Scott Fitzgerald",
+        "publication": 1925
+    },
+    {
+        "id": 30576,
+        "title": "Brave New World",
+        "author": "Aldous Huxley",
+        "publication": 1932
+    },
+    {
+        "id": 94872,
+        "title": "1984",
+        "author": "George Orwell",
+        "publication": 1949
+    },
+    {
+        "id": 26869,
+        "title": "The Catcher in the Rye",
+        "author": "J.D. Salinger",
+        "publication": 1951
+    },
+    {
+        "id": 54193,
+        "title": "The Lord of the Rings",
+        "author": "J.R.R. Tolkien",
+        "publication": 1954
+    },
+    {
+        "id": 42560,
+        "title": "To Kill a Mockingbird",
+        "author": "Harper Lee",
+        "publication": 1960
+    }
+]
