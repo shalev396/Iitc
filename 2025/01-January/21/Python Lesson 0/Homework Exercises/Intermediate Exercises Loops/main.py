@@ -15,10 +15,11 @@ for i in range(num):
     print(line)
 #Factorial Calculator
 num = int(input("enter a number"))
-line=""
-for i in range(num):
-    line+=str(i*num)+" "
-print(line)
+index=num
+while index>0:
+    num=num*index
+    index=index-1
+print(num)
 #Reverse Counter
 for i in range(10,0,-1):
     print(i)
