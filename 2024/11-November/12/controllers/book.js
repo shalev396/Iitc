@@ -20,7 +20,6 @@ export const getAllBooks = async (req, res) => {
     for (let i = 0; i < books.length; i++) {
       console.log(books[i].fullBookName);
     }
-
     res.status(200).send(books);
   } catch (error) {
     res.status(500).send(error);
