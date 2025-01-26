@@ -1,0 +1,19 @@
+[
+    {
+        "id": 23355,
+        "name": "shalev",
+        "email": "shalev396@gmail.com",
+        "extra_details": {
+            "phone": "\"0544809493\"",
+            "address": "\"haifa netive hen 35\""
+        }
+    },
+    {
+        "id": 2465,
+        "name": "shalev1",
+        "email": "shalev3961@gamil.com",
+        "extra_details": {
+            "school": "iitc"
+        }
+    }
+]

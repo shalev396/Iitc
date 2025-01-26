@@ -1,11 +1,12 @@
 
 try:
-    f = open("demofile.txt", "r")
-    print(f.read())
-    10/0
-except FileNotFoundError:
-    print(f"file dose not exist")
-except ZeroDivisionError:
-    print(f"cannot divide by zero")
+    with open("files.txt", "r") as f:
+        files=f.read().split(",")
+    for i in range(len(files)):
+        with open(files[i]+".txt","r") as temp:
+            print(temp.read())
+
+except FileNotFoundError as e:
+    print(f"file {e.filename} dose not exist")
 finally:
     print("done")
