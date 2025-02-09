@@ -54,21 +54,24 @@ export const registerUser = async (
 // @desc    Authenticate user
 // @route   POST /api/users/login
 // @access  Public
+
 export const loginUser = async (req: Request, res: Response): Promise<void> => {
   try {
     const { email, password } = req.body;
 
-    // Check for user email
+    if (!process.env.PASSWORD_SECRET) {
+      throw new Error("PASSWORD_SECRET not configured");
+    }
+
     const user = await User.findOne({ email });
     if (!user) {
-      res.status(400).json({ message: "Invalid credentials" });
+      res.status(401).json({ message: "Invalid credentials" });
       return;
     }
 
-    // Check password
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await user.comparePassword(password);
     if (!isMatch) {
-      res.status(400).json({ message: "Invalid credentials" });
+      res.status(401).json({ message: "Invalid credentials" });
       return;
     }
 
@@ -79,7 +82,8 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
       token: generateToken(user._id.toString()),
     });
   } catch (error) {
-    res.status(400).json({ message: "Invalid credentials" });
+    console.error("Login error:", error);
+    res.status(500).json({ message: "Server error" });
   }
 };
 

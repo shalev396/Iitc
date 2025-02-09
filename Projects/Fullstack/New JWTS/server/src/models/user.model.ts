@@ -45,24 +45,30 @@ const userSchema = new mongoose.Schema(
 
 // Hash password before saving
 userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next();
-
   try {
+    if (!this.isModified("password")) return next();
+
+    // Hash password with secret first
+    const saltedPassword = process.env.PASSWORD_SECRET + this.password;
     const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
+    this.password = await bcrypt.hash(saltedPassword, salt);
     next();
   } catch (error: any) {
     next(error);
   }
 });
 
-// Compare password method
 userSchema.methods.comparePassword = async function (
   candidatePassword: string
 ): Promise<boolean> {
   try {
-    return await bcrypt.compare(candidatePassword, this.password);
+    // Salt candidate password in same order as registration
+    const saltedPassword = process.env.PASSWORD_SECRET + candidatePassword;
+
+    // Compare with stored hash
+    return await bcrypt.compare(saltedPassword, this.password);
   } catch (error) {
+    console.error("Password comparison error:", error);
     return false;
   }
 };
